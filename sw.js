@@ -1,4 +1,4 @@
-const CACHE = 'rayyan-portfolio-v3';
+const CACHE = 'rayyan-portfolio-v4';
 const PRECACHE = [
   '/assets/profile-320.webp',
   '/assets/profile-380.webp',
