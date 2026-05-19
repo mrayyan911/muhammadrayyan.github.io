@@ -6,10 +6,32 @@
 <meta name="description" content="Muhammad Rayyan &mdash; Backend & AI Engineer. Production-grade APIs, computer vision, and generative AI systems."/>
 <title>Muhammad Rayyan &mdash; Backend & AI Engineer</title>
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preload" as="image" href="assets/profile.png" fetchpriority="high"/>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<script>
+(function () {
+  if (window.matchMedia('(max-width: 900px)').matches) {
+    document.documentElement.classList.add('fonts-system');
+    return;
+  }
+  var preconnect = function (href, cross) {
+    var l = document.createElement('link');
+    l.rel = 'preconnect';
+    l.href = href;
+    if (cross) l.crossOrigin = '';
+    document.head.appendChild(l);
+  };
+  preconnect('https://fonts.googleapis.com');
+  preconnect('https://fonts.gstatic.com', true);
+  var fontHref = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap';
+  var font = document.createElement('link');
+  font.rel = 'preload';
+  font.as = 'style';
+  font.href = fontHref;
+  font.onload = function () { font.onload = null; font.rel = 'stylesheet'; };
+  document.head.appendChild(font);
+})();
+</script>
+<link rel="preload" as="image" type="image/webp" href="assets/profile-640.webp" fetchpriority="high" media="(max-width: 900px)"/>
+<link rel="preload" as="image" type="image/webp" href="assets/profile-760.webp" fetchpriority="high" media="(min-width: 901px)"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"/></noscript>
 <style>
   :root {
@@ -38,6 +60,10 @@
       transparent 100%
     );
     --skeleton-speed: 1.8s;
+  }
+  html.fonts-system {
+    --font-display: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -765,9 +791,12 @@
     background: var(--surface2);
   }
   .project-card--featured .project-thumb { aspect-ratio: 21 / 8; }
-  .project-thumb-img {
+  .project-thumb picture {
     position: absolute;
     inset: 0;
+    display: block;
+  }
+  .project-thumb-img {
     display: block;
     width: 100%;
     height: 100%;
@@ -1264,7 +1293,11 @@
     }
     .hero-visual { order: -1; max-width: 320px; margin: 0 auto; }
     .hero-scroll { display: none; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-copy { min-height: 24rem; }
+    .hero-stats {
+      grid-template-columns: repeat(2, 1fr);
+      min-height: 10rem;
+    }
     .about-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: repeat(2, 1fr); }
     .projects-grid { grid-template-columns: 1fr; }
@@ -1414,8 +1447,14 @@
       <div class="hero-visual">
         <div class="hero-sync-grid" aria-hidden="true"></div>
         <div class="hero-photo-frame" id="heroPhotoFrame">
-          <img
-            src="assets/profile.png"
+          <picture>
+            <source
+              type="image/webp"
+              srcset="assets/profile-320.webp 320w, assets/profile-380.webp 380w, assets/profile-640.webp 640w, assets/profile-760.webp 760w"
+              sizes="(max-width: 900px) 320px, 380px"
+            />
+            <img
+              src="assets/profile.png"
             alt="Muhammad Rayyan &mdash; Backend and AI Engineer"
             class="hero-photo"
             width="380"
@@ -1425,6 +1464,7 @@
             fetchpriority="high"
             decoding="async"
           />
+          </picture>
         </div>
       </div>
     </div>
@@ -1647,16 +1687,19 @@
 
       <article class="project-card project-card--featured">
         <div class="project-thumb">
-          <img
-            class="project-thumb-img"
-            src="assets/Imagenix.png"
-            alt="Imagenix &mdash; AI-powered computer vision dataset platform preview"
-            width="1200"
-            height="457"
-            sizes="(max-width: 900px) 100vw, 50vw"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source type="image/webp" srcset="assets/Imagenix.webp"/>
+            <img
+              class="project-thumb-img"
+              src="assets/Imagenix.png"
+              alt="Imagenix &mdash; AI-powered computer vision dataset platform preview"
+              width="1200"
+              height="457"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <span class="project-thumb-label">Featured</span>
         </div>
         <div class="project-body">
@@ -1681,16 +1724,19 @@
 
       <article class="project-card">
         <div class="project-thumb">
-          <img
-            class="project-thumb-img"
-            src="assets/FastAPI.png"
-            alt="CV Platform Backend API &mdash; FastAPI production backend preview"
-            width="1200"
-            height="525"
-            sizes="(max-width: 900px) 100vw, 50vw"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source type="image/webp" srcset="assets/FastAPI.webp"/>
+            <img
+              class="project-thumb-img"
+              src="assets/FastAPI.png"
+              alt="CV Platform Backend API &mdash; FastAPI production backend preview"
+              width="1200"
+              height="525"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <span class="project-thumb-label">Internship</span>
         </div>
         <div class="project-body">
@@ -1714,16 +1760,19 @@
 
       <article class="project-card">
         <div class="project-thumb">
-          <img
-            class="project-thumb-img"
-            src="assets/Brain-Tumor.png"
-            alt="Brain Tumor Classification &mdash; MRI deep learning project preview"
-            width="1200"
-            height="525"
-            sizes="(max-width: 900px) 100vw, 50vw"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source type="image/webp" srcset="assets/Brain-Tumor.webp"/>
+            <img
+              class="project-thumb-img"
+              src="assets/Brain-Tumor.png"
+              alt="Brain Tumor Classification &mdash; MRI deep learning project preview"
+              width="1200"
+              height="525"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <span class="project-thumb-label">AI / ML</span>
         </div>
         <div class="project-body">
@@ -1967,8 +2016,9 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
-  // Scroll progress
+  // Scroll progress (rAF-throttled to avoid forced reflow on scroll)
   const scrollProgress = document.getElementById('scrollProgress');
+  let scrollProgressQueued = false;
   function updateScrollProgress() {
     if (!scrollProgress) return;
     const doc = document.documentElement;
@@ -1976,9 +2026,15 @@
     const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
     scrollProgress.style.width = pct + '%';
     scrollProgress.setAttribute('aria-valuenow', String(Math.round(pct)));
+    scrollProgressQueued = false;
   }
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  updateScrollProgress();
+  function queueScrollProgress() {
+    if (scrollProgressQueued) return;
+    scrollProgressQueued = true;
+    requestAnimationFrame(updateScrollProgress);
+  }
+  window.addEventListener('scroll', queueScrollProgress, { passive: true });
+  queueScrollProgress();
 
   // Hero particle canvas
   const heroCanvas = document.getElementById('heroCanvas');
@@ -2129,6 +2185,10 @@
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   }, { passive: true });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
 </script>
 </body>
 </html>
