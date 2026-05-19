@@ -8,7 +8,9 @@
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preload" as="image" href="assets/profile.png" fetchpriority="high"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"/></noscript>
 <style>
   :root {
     --bg: #0a0a0c;
@@ -22,8 +24,8 @@
     --muted: #8a8580;
     --border: #2a2a32;
     --glow: rgba(232, 255, 71, 0.35);
-    --font-display: 'Bricolage Grotesque', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
     --max-w: 1200px;
     --section-pad: clamp(3rem, 8vw, 7rem);
     --skeleton-base: #1e1e24;
@@ -409,6 +411,8 @@
     letter-spacing: -0.04em;
     color: var(--accent);
     line-height: 1;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.75rem;
   }
   .hero-stat-label {
     font-family: var(--font-mono);
@@ -1202,6 +1206,9 @@
     overflow: hidden;
   }
   #skeleton-screen.hidden { opacity: 0; pointer-events: none; }
+  @media (max-width: 900px) {
+    #skeleton-screen { display: none !important; }
+  }
   .sk-nav {
     display: flex;
     justify-content: space-between;
@@ -1239,6 +1246,19 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
+    .hero-canvas { display: none; }
+    .status-pill,
+    .hero-greeting,
+    .hero-tag,
+    .hero-name,
+    .hero-sub,
+    .hero-cta,
+    .hero-chips,
+    .hero-visual,
+    .hero-stats {
+      opacity: 1;
+      animation: none;
+    }
     .hero-layout {
       grid-template-columns: 1fr;
     }
@@ -1255,6 +1275,15 @@
     .exp-item { grid-template-columns: 1fr; gap: 1rem; }
     .sk-hero-row { grid-template-columns: 1fr; }
     .sk-cards { grid-template-columns: 1fr; }
+    #about,
+    #skills,
+    #experience,
+    #projects,
+    #resume,
+    #contact {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 480px;
+    }
   }
 
   @media (max-width: 600px) {
@@ -1391,7 +1420,9 @@
             class="hero-photo"
             width="380"
             height="475"
+            sizes="(max-width: 900px) 320px, 380px"
             loading="eager"
+            fetchpriority="high"
             decoding="async"
           />
         </div>
@@ -1399,7 +1430,7 @@
     </div>
     <div class="hero-stats" aria-label="Career highlights">
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="3" data-suffix="+">0+</div>
+        <div class="hero-stat-num" data-count="3" data-suffix="+">3+</div>
         <div class="hero-stat-label">Production Projects</div>
       </div>
       <div class="hero-stat">
@@ -1407,11 +1438,11 @@
         <div class="hero-stat-label">Industry Internship</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="10" data-suffix="+">0+</div>
+        <div class="hero-stat-num" data-count="10" data-suffix="+">10+</div>
         <div class="hero-stat-label">Technologies</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-num" data-count="4">0</div>
+        <div class="hero-stat-num" data-count="4">4</div>
         <div class="hero-stat-label">IBM / Google Certs</div>
       </div>
     </div>
@@ -1622,6 +1653,7 @@
             alt="Imagenix &mdash; AI-powered computer vision dataset platform preview"
             width="1200"
             height="457"
+            sizes="(max-width: 900px) 100vw, 50vw"
             loading="lazy"
             decoding="async"
           />
@@ -1655,6 +1687,7 @@
             alt="CV Platform Backend API &mdash; FastAPI production backend preview"
             width="1200"
             height="525"
+            sizes="(max-width: 900px) 100vw, 50vw"
             loading="lazy"
             decoding="async"
           />
@@ -1687,6 +1720,7 @@
             alt="Brain Tumor Classification &mdash; MRI deep learning project preview"
             width="1200"
             height="525"
+            sizes="(max-width: 900px) 100vw, 50vw"
             loading="lazy"
             decoding="async"
           />
@@ -1838,15 +1872,24 @@
   </div>
 </footer>
 <script>
-  // Skeleton dismiss
-  window.addEventListener('load', () => {
-    const sk = document.getElementById('skeleton-screen');
-    sk.classList.add('hidden');
-    setTimeout(() => sk.remove(), 500);
-  });
-
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const isMobileLayout = window.matchMedia('(max-width: 900px)').matches;
+
+  // Skeleton dismiss (desktop only; hidden on mobile to avoid layout shift)
+  const sk = document.getElementById('skeleton-screen');
+  if (sk) {
+    if (isMobileLayout) {
+      sk.remove();
+    } else {
+      const dismissSkeleton = () => {
+        sk.classList.add('hidden');
+        setTimeout(() => sk.remove(), 500);
+      };
+      if (document.readyState === 'complete') dismissSkeleton();
+      else window.addEventListener('load', dismissSkeleton, { once: true });
+    }
+  }
 
   // Custom cursor ? desktop only
   if (hasFinePointer && !prefersReducedMotion) {
@@ -1940,7 +1983,7 @@
   // Hero particle canvas
   const heroCanvas = document.getElementById('heroCanvas');
   const heroSection = document.getElementById('hero');
-  if (heroCanvas && heroSection && !prefersReducedMotion) {
+  if (heroCanvas && heroSection && !prefersReducedMotion && !isMobileLayout) {
     const ctx = heroCanvas.getContext('2d');
     let particles = [];
     let mouse = { x: -9999, y: -9999 };
@@ -2045,7 +2088,7 @@
   }
 
   const countEls = document.querySelectorAll('[data-count]');
-  if (!prefersReducedMotion && countEls.length) {
+  if (!prefersReducedMotion && !isMobileLayout && countEls.length) {
     const countObs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
