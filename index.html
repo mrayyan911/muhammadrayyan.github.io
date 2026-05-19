@@ -523,11 +523,15 @@
   }
   .marquee-track {
     display: flex;
+    width: max-content;
+    flex-wrap: nowrap;
     white-space: nowrap;
     animation: marquee 28s linear infinite;
+    will-change: transform;
   }
   .marquee-item {
     display: inline-flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 1.5rem;
     padding: 0 1.5rem;
@@ -1341,8 +1345,13 @@
     }
     .skills-grid { grid-template-columns: 1fr; }
     .hero-cta .btn { flex: 1; min-width: 140px; }
-    .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; }
-    .marquee-wrap { padding: 1.25rem; }
+    .marquee-track { animation-duration: 24s; }
+    .marquee-wrap { padding: 0.85rem 0; }
+    .marquee-item {
+      gap: 1rem;
+      padding: 0 0.85rem;
+      font-size: 0.62rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
