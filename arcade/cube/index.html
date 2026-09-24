@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f0e9" />
+    <title>Rubik’s cube | Arcade | Muhammad Rayyan</title>
+    <meta name="description" content="Scramble and solve a 3D Rubik’s cube in your browser. Drag layers to turn them, race the timer, and keep your best time. Built by Muhammad Rayyan with Three.js." />
+    <link rel="canonical" href="https://www.rayyandev.tech/arcade/cube/" />
+    <meta property="og:title" content="Rubik’s cube | Arcade | Muhammad Rayyan" />
+    <meta property="og:description" content="Scramble and solve a 3D Rubik’s cube in your browser." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rayyandev.tech/arcade/cube/" />
+    <meta property="og:image" content="https://www.rayyandev.tech/assets/arcade/posters/cube.webp" />
+    <meta property="og:site_name" content="Muhammad Rayyan" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rubik’s cube | Arcade | Muhammad Rayyan" />
+    <meta name="twitter:image" content="https://www.rayyandev.tech/assets/arcade/posters/cube.webp" />
+    <link id="favicon" rel="icon" href="/assets/favicon-avatar.png?v=3" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=3" sizes="180x180" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/portfolio.css" />
+    <link rel="stylesheet" href="/assets/arcade/arcade.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/assets/vendor/three@0.186.0/three.module.min.js",
+          "three/addons/": "/assets/vendor/three@0.186.0/addons/"
+        }
+      }
+    </script>
+    <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.module.min.js" />
+    <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.core.min.js" />
+    <script src="/assets/portfolio.js" defer></script>
+    <script src="/assets/favicon.js" defer></script>
+    <script type="module" src="/assets/arcade/cube/page.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Rubik’s cube",
+        "url": "https://www.rayyandev.tech/arcade/cube/",
+        "description": "A 3D Rubik’s cube you can scramble and solve in the browser.",
+        "gamePlatform": "Web browser",
+        "applicationCategory": "Game",
+        "image": "https://www.rayyandev.tech/assets/arcade/posters/cube.webp",
+        "author": { "@id": "https://www.rayyandev.tech/#person", "@type": "Person", "name": "Muhammad Rayyan" }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label="Muhammad Rayyan, home">rayyan<span class="accent">.</span></a>
+      <span class="header-note mono">A portfolio of<br />code &amp; curiosity</span>
+      <nav aria-label="Main navigation">
+        <a href="/#projects">Work</a><a href="/arcade/" aria-current="page">Arcade</a><a href="/#about">About</a><a href="/#contact">Let’s talk</a>
+      </nav>
+    </header>
+    <main id="main" class="game-page cube-page wrap">
+      <a class="text-link back-link" href="/arcade/">All games</a>
+      <div class="game-heading">
+        <h1>Rubik’s cube<span class="accent">.</span></h1>
+        <p class="game-lede">Scramble it, then bring every face back to one color.</p>
+      </div>
+      <div class="game-layout">
+        <div class="stage-column">
+          <div class="stage" id="stage">
+            <img class="stage-poster" src="/assets/arcade/posters/cube.webp" width="900" height="690" alt="" />
+            <canvas
+              tabindex="0"
+              aria-label="Rubik’s cube. Drag a sticker to turn its layer, or drag the background to rotate the cube. Keys U, D, L, R, F, and B turn layers."
+              aria-describedby="cube-status"
+            ></canvas>
+            <div class="stage-message" id="stage-message" hidden></div>
+            <noscript><div class="stage-message"><p>This game needs JavaScript to run.</p></div></noscript>
+          </div>
+          <p class="stage-status mono" id="cube-status" role="status" aria-live="polite">Loading the cube…</p>
+          <p class="stage-hint mono">Drag a sticker to turn its layer / Drag the background to rotate / Double-click the background to reset the view</p>
+        </div>
+        <aside class="game-panel" aria-label="Cube controls">
+          <dl class="stats">
+            <div><dt>Time</dt><dd id="time">0:00.00</dd></div>
+            <div><dt>Moves</dt><dd id="moves">0</dd></div>
+            <div><dt>Best</dt><dd id="best">—</dd></div>
+          </dl>
+          <div class="button-row game-actions">
+            <button type="button" class="button button-primary" id="scramble" disabled>Scramble</button>
+            <button type="button" class="button" id="undo" disabled>Undo</button>
+            <button type="button" class="button" id="reset" disabled>Reset cube</button>
+          </div>
+          <div class="confirm" id="reset-confirm" hidden>
+            <p>Reset and lose this solve?</p>
+            <div class="button-row">
+              <button type="button" class="button button-small" id="reset-yes">Reset</button>
+              <button type="button" class="button button-small" id="reset-no">Keep solving</button>
+            </div>
+          </div>
+          <div class="panel-block" id="scramble-block" hidden>
+            <span class="panel-label">Scramble</span>
+            <p class="scramble-text" id="scramble-text"></p>
+          </div>
+          <details>
+            <summary>Move buttons <span aria-hidden="true">+</span></summary>
+            <div class="move-pad" id="move-pad"></div>
+          </details>
+          <details>
+            <summary>Keyboard controls <span aria-hidden="true">+</span></summary>
+            <dl class="key-list">
+              <dt>U D L R F B</dt><dd>Turn a layer clockwise</dd>
+              <dt>Shift + key</dt><dd>Turn it counterclockwise</dd>
+              <dt>M E S</dt><dd>Turn a middle slice</dd>
+              <dt>X Y Z</dt><dd>Rotate the whole cube</dd>
+              <dt>Arrow keys</dt><dd>Look around</dd>
+              <dt>Home</dt><dd>Reset the view</dd>
+              <dt>Ctrl + Z</dt><dd>Undo</dd>
+              <dt>Esc</dt><dd>Cancel a drag</dd>
+            </dl>
+            <p class="detail-note">Letters follow what you see: F is the face toward you.</p>
+          </details>
+          <div class="panel-block">
+            <label class="toggle"><input type="checkbox" id="letters" /> Show face letters</label>
+            <label class="toggle"><input type="checkbox" id="sound" /> Sound</label>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="wordmark" href="/">rayyan<span class="accent">.</span></a>
+      <p class="mono">© <span id="year">2026</span> Muhammad Rayyan</p>
+      <div>
+        <a href="https://github.com/mrayyan911" target="_blank" rel="noopener noreferrer">GitHub</a
+        ><a href="https://linkedin.com/in/muhammadrayyan911" target="_blank" rel="noopener noreferrer">LinkedIn</a
+        ><a href="/arcade/">All games</a>
+      </div>
+    </footer>
+  </body>
+</html>

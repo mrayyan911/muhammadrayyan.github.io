@@ -24,7 +24,7 @@ if (copyButton && copyStatus && navigator.clipboard && window.isSecureContext) {
 
 if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js").catch(() => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {
       // Caching is optional; the portfolio still works without it.
     });
   });
