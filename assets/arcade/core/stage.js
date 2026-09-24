@@ -135,7 +135,9 @@ export function createStage(canvas, { fov = 30, quality, onLost, onRestored } = 
     last = keepGoing ? now : 0;
     if (keepGoing) {
       adapt(now);
-      frameId = requestAnimationFrame(frame);
+      // An animator or tween may already have queued the next frame through
+      // invalidate(); queueing another would fork a second render loop.
+      if (!frameId) frameId = requestAnimationFrame(frame);
     } else {
       prevNow = 0;
     }
