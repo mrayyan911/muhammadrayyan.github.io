@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f0e9" />
+    <title>Arcade | Muhammad Rayyan</title>
+    <meta name="description" content="Two small 3D games by Muhammad Rayyan, built with Three.js: a Rubik’s cube you can scramble and solve, and chess against a bot." />
+    <link rel="canonical" href="https://www.rayyandev.tech/arcade/" />
+    <meta property="og:title" content="Arcade | Muhammad Rayyan" />
+    <meta property="og:description" content="Two small 3D games built with Three.js: a Rubik’s cube and chess against a bot." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rayyandev.tech/arcade/" />
+    <meta property="og:image" content="https://www.rayyandev.tech/assets/arcade/posters/cube.webp" />
+    <meta property="og:site_name" content="Muhammad Rayyan" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arcade | Muhammad Rayyan" />
+    <meta name="twitter:image" content="https://www.rayyandev.tech/assets/arcade/posters/cube.webp" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="900" />
+    <meta property="og:image:height" content="690" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content="3D Rubik&#x27;s cube in Muhammad Rayyan&#x27;s arcade" />
+    <meta name="twitter:description" content="Two small 3D games by Muhammad Rayyan, built with Three.js: a Rubik’s cube you can scramble and solve, and chess against a bot." />
+    <meta name="twitter:image:alt" content="3D Rubik&#x27;s cube in Muhammad Rayyan&#x27;s arcade" />
+    <link rel="describedby" href="/llms.txt" type="text/plain" />
+    <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+    <link id="favicon" rel="icon" href="/assets/favicon-avatar.png?v=3" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=3" sizes="180x180" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/portfolio.css" />
+    <link rel="stylesheet" href="/assets/arcade/arcade.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/assets/vendor/three@0.186.0/three.module.min.js",
+          "three/addons/": "/assets/vendor/three@0.186.0/addons/",
+          "chess.js": "/assets/vendor/chess.js@1.4.0/chess.js"
+        }
+      }
+    </script>
+    <script src="/assets/portfolio.js" defer></script>
+    <script src="/assets/favicon.js" defer></script>
+    <script type="module" src="/assets/arcade/index.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Arcade | Muhammad Rayyan",
+        "url": "https://www.rayyandev.tech/arcade/",
+        "description": "Two small 3D games built with Three.js: a Rubik’s cube and chess against a bot.",
+        "isPartOf": { "@id": "https://www.rayyandev.tech/#website" },
+        "hasPart": [
+          { "@type": "VideoGame", "name": "Rubik’s cube", "url": "https://www.rayyandev.tech/arcade/cube/", "gamePlatform": "Web browser" },
+          { "@type": "VideoGame", "name": "Chess", "url": "https://www.rayyandev.tech/arcade/chess/", "gamePlatform": "Web browser" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label="Muhammad Rayyan, home">rayyan<span class="accent">.</span></a>
+      <span class="header-note mono">A portfolio of<br />code &amp; curiosity</span>
+      <nav aria-label="Main navigation">
+        <a href="/#projects">Work</a><a href="/arcade/" aria-current="page">Arcade</a><a href="/#about">About</a><a href="/#contact">Let’s talk</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero arcade-hero wrap" aria-labelledby="arcade-title">
+        <div class="hero-topline mono"><span>Arcade / Two games</span><span>Lahore, Pakistan</span></div>
+        <h1 id="arcade-title">Arcade<span class="accent">.</span></h1>
+        <div class="hero-bottom">
+          <p class="hero-statement">Two small 3D games,<br /><em>built between commits.</em></p>
+          <div class="hero-intro">
+            <p>A Rubik’s cube and a chess board, rendered in your browser with Three.js. Pick one and play.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="arcade-games wrap section-space" aria-label="Games">
+        <div class="project-pair">
+          <article class="project game-card" data-game="cube">
+            <a class="project-visual game-visual cube-visual" href="/arcade/cube/" aria-label="Play Rubik’s cube">
+              <div class="visual-topline mono"><span>Rubik’s cube / 3 × 3 puzzle</span></div>
+              <div class="game-stage-preview">
+                <img src="/assets/arcade/posters/cube.webp" width="900" height="690" alt="" decoding="async" />
+              </div>
+              <div class="visual-bottomline mono">
+                <span>Drag a layer to turn it</span><span class="visual-action">Play</span>
+              </div>
+            </a>
+            <div class="project-info">
+              <div>
+                <p class="project-type mono">Puzzle / Solo</p>
+                <h3><a href="/arcade/cube/">Rubik’s cube</a></h3>
+              </div>
+              <div>
+                <p>Scramble it, then solve it. Turn layers by dragging, or use the U, D, L, R, F, and B keys. Your best time stays on this device.</p>
+                <p class="stack mono">Three.js / Instanced rendering</p>
+                <p class="game-record" id="cube-record" hidden></p>
+              </div>
+            </div>
+          </article>
+          <article class="project project-offset game-card" data-game="chess">
+            <a class="project-visual game-visual chess-visual" href="/arcade/chess/" aria-label="Play chess against the bot">
+              <div class="visual-topline mono"><span>Chess / You against a bot</span></div>
+              <div class="game-stage-preview">
+                <img src="/assets/arcade/posters/chess.webp" width="900" height="690" alt="" decoding="async" />
+              </div>
+              <div class="visual-bottomline mono">
+                <span>Replaying the Opera Game, 1858</span><span class="visual-action">Play</span>
+              </div>
+            </a>
+            <div class="project-info">
+              <div>
+                <p class="project-type mono">Strategy / Against a bot</p>
+                <h3><a href="/arcade/chess/">Chess</a></h3>
+              </div>
+              <div>
+                <p>Play white or black against a bot with three levels. If you leave mid-game, it’s saved for when you come back.</p>
+                <p class="stack mono">Three.js / Web Worker search</p>
+                <p class="game-record" id="chess-record" hidden></p>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p class="arcade-more">
+          More games are on the way. Have an idea for one?
+          <a class="text-link" href="mailto:rayyan.scale@gmail.com?subject=Arcade%20idea">Write me a note</a>
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="wordmark" href="/">rayyan<span class="accent">.</span></a>
+      <p class="mono">© <span id="year">2026</span> Muhammad Rayyan</p>
+      <div>
+        <a href="https://github.com/mrayyan911" target="_blank" rel="noopener noreferrer">GitHub</a
+        ><a href="https://linkedin.com/in/muhammadrayyan911" target="_blank" rel="noopener noreferrer">LinkedIn</a
+        ><a href="/">Back to portfolio</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+# Muhammad Rayyan
+
+> Full-stack developer based in Lahore, Pakistan. Builds web applications, developer tools, and AI systems with TypeScript, Next.js, Python, and PostgreSQL.
+
+This is Muhammad Rayyan's personal portfolio. It describes his work, experience, skills, and education. He works at Journal Post Group and previously interned at Voliom. Project descriptions distinguish current professional work from personal projects. Contact: rayyan.scale@gmail.com.
+
+## Portfolio
+
+- [Portfolio](https://www.rayyandev.tech/): Biography, projects, work experience, toolkit, education, and contact details.
+- [Selected projects](https://www.rayyandev.tech/#projects): JournalPost, Usage Pill, and Imagenix, with expandable implementation notes.
+- [Experience](https://www.rayyandev.tech/#experience): Full-stack development at Journal Post Group and an AI/ML internship at Voliom.
+- [Resume](https://www.rayyandev.tech/MuhammadRayyan-Resume.pdf): Downloadable professional resume.
+
+## Arcade
+
+- [Arcade](https://www.rayyandev.tech/arcade/): Two small 3D browser games built with Three.js.
+- [Rubik’s cube](https://www.rayyandev.tech/arcade/cube/): Scramble and solve a 3D cube with a timer and best time.
+- [Chess](https://www.rayyandev.tech/arcade/chess/): Play white or black against a bot with easy, medium, and hard levels.
+
+## Projects and profiles
+
+- [JournalPost](https://journalpost.com): Publishing platform, developed with Next.js, Payload CMS, and Supabase Postgres.
+- [Usage Pill](https://github.com/mrayyan911/usage-pill): Open-source desktop overlay for Claude Code and Codex usage. Automatic monitoring supports native Windows; the app runs from source.
+- [Imagenix](https://github.com/mrayyan911/Imagenix): Image dataset annotation, augmentation, and export platform.
+- [GitHub](https://github.com/mrayyan911): Public repositories.
+- [LinkedIn](https://www.linkedin.com/in/muhammadrayyan911/): Professional profile.

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3f0e9" />
+    <title>Chess | Arcade | Muhammad Rayyan</title>
+    <meta name="description" content="Play 3D chess against a bot in your browser. Choose white or black and an easy, medium, or hard level. Built by Muhammad Rayyan with Three.js." />
+    <link rel="canonical" href="https://www.rayyandev.tech/arcade/chess/" />
+    <meta property="og:title" content="Chess | Arcade | Muhammad Rayyan" />
+    <meta property="og:description" content="Play 3D chess against a bot in your browser." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rayyandev.tech/arcade/chess/" />
+    <meta property="og:image" content="https://www.rayyandev.tech/assets/arcade/posters/chess.webp" />
+    <meta property="og:site_name" content="Muhammad Rayyan" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chess | Arcade | Muhammad Rayyan" />
+    <meta name="twitter:image" content="https://www.rayyandev.tech/assets/arcade/posters/chess.webp" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:width" content="900" />
+    <meta property="og:image:height" content="690" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content="3D chess board in Muhammad Rayyan&#x27;s arcade" />
+    <meta name="twitter:description" content="Play 3D chess against a bot in your browser. Choose white or black and an easy, medium, or hard level. Built by Muhammad Rayyan with Three.js." />
+    <meta name="twitter:image:alt" content="3D chess board in Muhammad Rayyan&#x27;s arcade" />
+    <link rel="describedby" href="/llms.txt" type="text/plain" />
+    <link rel="sitemap" href="/sitemap.xml" type="application/xml" />
+    <link id="favicon" rel="icon" href="/assets/favicon-avatar.png?v=3" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=3" sizes="180x180" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/portfolio.css" />
+    <link rel="stylesheet" href="/assets/arcade/arcade.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/assets/vendor/three@0.186.0/three.module.min.js",
+          "three/addons/": "/assets/vendor/three@0.186.0/addons/",
+          "chess.js": "/assets/vendor/chess.js@1.4.0/chess.js"
+        }
+      }
+    </script>
+    <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.module.min.js" />
+    <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.core.min.js" />
+    <link rel="modulepreload" href="/assets/vendor/chess.js@1.4.0/chess.js" />
+    <script src="/assets/portfolio.js" defer></script>
+    <script src="/assets/favicon.js" defer></script>
+    <script type="module" src="/assets/arcade/chess/page.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Chess",
+        "url": "https://www.rayyandev.tech/arcade/chess/",
+        "description": "3D chess against a bot with three levels, in the browser.",
+        "gamePlatform": "Web browser",
+        "applicationCategory": "Game",
+        "image": "https://www.rayyandev.tech/assets/arcade/posters/chess.webp",
+        "author": { "@id": "https://www.rayyandev.tech/#person", "@type": "Person", "name": "Muhammad Rayyan" }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="/" aria-label="Muhammad Rayyan, home">rayyan<span class="accent">.</span></a>
+      <span class="header-note mono">A portfolio of<br />code &amp; curiosity</span>
+      <nav aria-label="Main navigation">
+        <a href="/#projects">Work</a><a href="/arcade/" aria-current="page">Arcade</a><a href="/#about">About</a><a href="/#contact">Let’s talk</a>
+      </nav>
+    </header>
+    <main id="main" class="game-page chess-page wrap">
+      <a class="text-link back-link" href="/arcade/">All games</a>
+      <div class="game-heading">
+        <h1>Chess<span class="accent">.</span></h1>
+        <p class="game-lede">Play against a bot. Pick a level, and a side when you start a new game.</p>
+      </div>
+      <div class="game-layout">
+        <div class="stage-column">
+          <div class="stage" id="stage">
+            <img class="stage-poster" src="/assets/arcade/posters/chess.webp" width="900" height="690" alt="" />
+            <canvas
+              tabindex="0"
+              role="application"
+              aria-label="Chess board. Use arrow keys to move the cursor, Enter to pick up or place a piece."
+              aria-describedby="chess-status"
+            ></canvas>
+            <div class="stage-message" id="stage-message" hidden></div>
+            <div class="promotion" id="promotion" role="dialog" aria-labelledby="promotion-title" hidden>
+              <p id="promotion-title">Promote your pawn to</p>
+              <div class="button-row">
+                <button type="button" class="button" data-piece="q" aria-label="Queen">♕</button>
+                <button type="button" class="button" data-piece="r" aria-label="Rook">♖</button>
+                <button type="button" class="button" data-piece="b" aria-label="Bishop">♗</button>
+                <button type="button" class="button" data-piece="n" aria-label="Knight">♘</button>
+              </div>
+            </div>
+            <div class="game-over" id="game-over" hidden>
+              <h2 id="game-over-title"></h2>
+              <div class="button-row">
+                <button type="button" class="button button-primary" id="play-again">Play again</button>
+                <button type="button" class="button" id="review">Review moves</button>
+              </div>
+            </div>
+            <noscript><div class="stage-message"><p>This game needs JavaScript to run.</p></div></noscript>
+          </div>
+          <p class="stage-status mono" id="chess-status" role="status" aria-live="polite">Setting up the board…</p>
+          <p class="visually-hidden" id="cursor-status" aria-live="polite"></p>
+          <p class="stage-hint mono">Click or drag a piece to move it / Drag the board to look around</p>
+        </div>
+        <aside class="game-panel" aria-label="Chess controls">
+          <div class="captures" aria-label="Captured pieces">
+            <div id="captured-by-bot"></div>
+            <div id="captured-by-you"></div>
+          </div>
+          <div class="button-row game-actions">
+            <button type="button" class="button" id="undo" disabled>Undo move</button>
+            <button type="button" class="button button-primary" id="new-game">New game</button>
+            <button type="button" class="button" id="resign" disabled>Resign</button>
+          </div>
+          <div class="confirm" id="resign-confirm" hidden>
+            <p>Resign this game?</p>
+            <div class="button-row">
+              <button type="button" class="button button-small" id="resign-yes">Resign</button>
+              <button type="button" class="button button-small" id="resign-no">Keep playing</button>
+            </div>
+          </div>
+          <div class="button-row">
+            <button type="button" class="button button-small" id="flip">Flip board</button>
+            <button type="button" class="button button-small" id="top-view" aria-pressed="false">Top view</button>
+          </div>
+          <fieldset class="choice-group">
+            <legend>Level</legend>
+            <div class="segmented">
+              <label><input type="radio" name="level" value="easy" /><span>Easy</span></label>
+              <label><input type="radio" name="level" value="medium" checked /><span>Medium</span></label>
+              <label><input type="radio" name="level" value="hard" /><span>Hard</span></label>
+            </div>
+          </fieldset>
+          <div class="panel-block">
+            <span class="panel-label">Moves</span>
+            <ol class="move-list" id="move-list"></ol>
+            <p class="move-list-empty" id="move-list-empty">No moves yet.</p>
+          </div>
+          <form class="panel-block" id="move-form" autocomplete="off">
+            <label class="panel-label" for="move-text">Type a move</label>
+            <div class="move-input">
+              <input id="move-text" name="move" placeholder="e4 or Nf3" spellcheck="false" autocapitalize="off" />
+              <button type="submit" class="button button-small">Play</button>
+            </div>
+            <p class="move-error" id="move-error" aria-live="polite"></p>
+          </form>
+          <details>
+            <summary>Keyboard controls <span aria-hidden="true">+</span></summary>
+            <dl class="key-list">
+              <dt>Arrow keys</dt><dd>Move the cursor on the board</dd>
+              <dt>Enter / Space</dt><dd>Pick up or place a piece</dd>
+              <dt>Esc</dt><dd>Put the piece back</dd>
+              <dt>Ctrl + Z</dt><dd>Undo your last move</dd>
+            </dl>
+          </details>
+          <label class="toggle"><input type="checkbox" id="sound" /> Sound</label>
+        </aside>
+      </div>
+      <dialog class="new-game" id="new-game-dialog" aria-labelledby="new-game-title">
+        <form method="dialog" id="new-game-form">
+          <h2 id="new-game-title">New game</h2>
+          <fieldset class="choice-group">
+            <legend>Play as</legend>
+            <div class="segmented">
+              <label><input type="radio" name="side" value="w" checked /><span>White</span></label>
+              <label><input type="radio" name="side" value="b" /><span>Black</span></label>
+              <label><input type="radio" name="side" value="random" /><span>Random</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="choice-group">
+            <legend>Level</legend>
+            <div class="segmented">
+              <label><input type="radio" name="dialog-level" value="easy" /><span>Easy</span></label>
+              <label><input type="radio" name="dialog-level" value="medium" checked /><span>Medium</span></label>
+              <label><input type="radio" name="dialog-level" value="hard" /><span>Hard</span></label>
+            </div>
+          </fieldset>
+          <div class="button-row">
+            <button type="submit" class="button button-primary" value="start">Start game</button>
+            <button type="submit" class="button" value="cancel" formnovalidate>Cancel</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <footer class="site-footer wrap">
+      <a class="wordmark" href="/">rayyan<span class="accent">.</span></a>
+      <p class="mono">© <span id="year">2026</span> Muhammad Rayyan</p>
+      <div>
+        <a href="https://github.com/mrayyan911" target="_blank" rel="noopener noreferrer">GitHub</a
+        ><a href="https://linkedin.com/in/muhammadrayyan911" target="_blank" rel="noopener noreferrer">LinkedIn</a
+        ><a href="/arcade/">All games</a>
+      </div>
+    </footer>
+  </body>
+</html>
