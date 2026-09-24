@@ -1,7 +1,11 @@
-// Procedural chess pieces: lathe profiles plus a few merged details. Built
+// Procedural Staunton pieces: lathe profiles plus a few merged details. Built
 // once at startup, so there is no model download. Units: one board square.
+// Each piece gets its own height and one bold signature (crenellations,
+// mitre, coronet, cross, horse head) so they read apart at a glance.
 import {
   BoxGeometry,
+  ConeGeometry,
+  CylinderGeometry,
   ExtrudeGeometry,
   LatheGeometry,
   Shape,
@@ -10,106 +14,104 @@ import {
 } from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
-const SEGMENTS = 32;
+const SEGMENTS = 40;
 
-const BASE = [
-  [0, 0],
-  [0.34, 0],
-  [0.35, 0.05],
-  [0.31, 0.09],
-  [0.26, 0.12],
-  [0.23, 0.16],
-];
+// Stepped foot shared by every piece, scaled by its radius.
+function foot(r) {
+  return [
+    [0, 0],
+    [r, 0],
+    [r + 0.012, 0.025],
+    [r, 0.055],
+    [r - 0.035, 0.075],
+    [r - 0.04, 0.095],
+    [r - 0.075, 0.115],
+    [r - 0.085, 0.14],
+  ];
+}
+
+// Collar ring between stem and head.
+function collar(r, y) {
+  return [
+    [r - 0.02, y],
+    [r, y + 0.012],
+    [r, y + 0.03],
+    [r - 0.02, y + 0.042],
+  ];
+}
+
+// Quarter-to-half arcs for balls and domes, bottom to top.
+function arc(cy, radius, from = -Math.PI / 2, to = Math.PI / 2, steps = 10) {
+  const points = [];
+  for (let i = 0; i <= steps; i++) {
+    const a = from + ((to - from) * i) / steps;
+    points.push([Math.max(0, Math.cos(a) * radius), cy + Math.sin(a) * radius]);
+  }
+  return points;
+}
 
 const PROFILES = {
   p: [
-    [0, 0],
-    [0.3, 0],
-    [0.31, 0.05],
-    [0.28, 0.09],
-    [0.23, 0.12],
-    [0.21, 0.15],
-    [0.14, 0.22],
-    [0.11, 0.34],
-    [0.17, 0.37],
-    [0.17, 0.39],
-    [0.1, 0.41],
-    [0.13, 0.45],
-    [0.15, 0.5],
-    [0.14, 0.56],
-    [0.1, 0.6],
-    [0.05, 0.62],
-    [0, 0.625],
+    ...foot(0.3),
+    [0.16, 0.2],
+    [0.115, 0.33],
+    ...collar(0.19, 0.35),
+    [0.1, 0.405],
+    ...arc(0.53, 0.14, -1.05),
   ],
   r: [
-    ...BASE,
-    [0.2, 0.3],
-    [0.19, 0.52],
-    [0.23, 0.56],
-    [0.26, 0.58],
-    [0.26, 0.7],
-    [0.2, 0.7],
-    [0.2, 0.66],
-    [0, 0.66],
+    ...foot(0.33),
+    [0.225, 0.2],
+    [0.2, 0.52],
+    [0.22, 0.56],
+    [0.27, 0.6],
+    [0.28, 0.63],
+    [0.28, 0.72],
+    [0.18, 0.72],
+    [0.18, 0.69],
+    [0, 0.69],
   ],
   b: [
-    ...BASE,
-    [0.15, 0.28],
-    [0.12, 0.47],
-    [0.19, 0.5],
-    [0.19, 0.53],
-    [0.12, 0.55],
-    [0.15, 0.61],
-    [0.17, 0.69],
-    [0.15, 0.77],
-    [0.1, 0.83],
-    [0.04, 0.87],
-    [0.055, 0.9],
-    [0.035, 0.93],
-    [0, 0.94],
+    ...foot(0.32),
+    [0.17, 0.22],
+    [0.12, 0.48],
+    ...collar(0.2, 0.5),
+    [0.11, 0.56],
+    [0.14, 0.61],
+    [0.172, 0.68],
+    [0.172, 0.74],
+    [0.15, 0.8],
+    [0.11, 0.86],
+    [0.06, 0.9],
+    [0.035, 0.915],
+    ...arc(0.955, 0.05, -0.9),
   ],
   q: [
-    [0, 0],
-    [0.36, 0],
-    [0.37, 0.05],
-    [0.33, 0.09],
-    [0.28, 0.12],
-    [0.25, 0.16],
-    [0.17, 0.3],
-    [0.13, 0.58],
-    [0.2, 0.62],
-    [0.2, 0.65],
-    [0.14, 0.67],
-    [0.17, 0.76],
-    [0.22, 0.86],
-    [0.18, 0.88],
-    [0.1, 0.9],
-    [0.07, 0.94],
-    [0, 0.95],
+    ...foot(0.36),
+    [0.2, 0.24],
+    [0.14, 0.6],
+    ...collar(0.23, 0.63),
+    [0.13, 0.69],
+    [0.16, 0.78],
+    [0.22, 0.9],
+    [0.26, 0.95],
+    [0.24, 0.97],
+    [0.16, 0.975],
+    ...arc(0.975, 0.14, 0, Math.PI / 2, 6),
   ],
   k: [
-    [0, 0],
-    [0.37, 0],
-    [0.38, 0.05],
-    [0.34, 0.09],
-    [0.29, 0.12],
-    [0.26, 0.16],
-    [0.18, 0.3],
-    [0.14, 0.64],
-    [0.21, 0.68],
-    [0.21, 0.71],
-    [0.15, 0.73],
-    [0.18, 0.82],
-    [0.21, 0.9],
-    [0.17, 0.92],
-    [0.1, 0.94],
-    [0, 0.94],
+    ...foot(0.37),
+    [0.21, 0.24],
+    [0.15, 0.66],
+    ...collar(0.24, 0.69),
+    [0.14, 0.75],
+    [0.17, 0.86],
+    [0.235, 1.0],
+    [0.235, 1.03],
+    [0.16, 1.04],
+    ...arc(1.04, 0.12, 0, Math.PI / 2, 6),
   ],
-  n: [
-    ...BASE,
-    [0.2, 0.22],
-    [0, 0.22],
-  ],
+  n: [...foot(0.33), [0.23, 0.2], [0.23, 0.24], [0, 0.24]],
 };
 
 function lathe(points) {
@@ -123,33 +125,37 @@ function box(w, h, d, x, y, z) {
   return new BoxGeometry(w, h, d).translate(x, y, z);
 }
 
+// Horse head in profile, muzzle toward +x, extruded along z and centred.
 function knightHead() {
-  // Facing +x; extruded along z and centred.
   const points = [
-    [-0.18, 0.18],
-    [0.2, 0.18],
-    [0.2, 0.3],
-    [0.12, 0.42],
-    [0.24, 0.52],
-    [0.29, 0.6],
-    [0.23, 0.68],
-    [0.07, 0.79],
-    [0.03, 0.88],
-    [-0.05, 0.8],
-    [-0.14, 0.72],
-    [-0.2, 0.54],
-    [-0.22, 0.34],
+    [-0.21, 0.22],
+    [0.2, 0.22],
+    [0.23, 0.33],
+    [0.14, 0.47],
+    [0.17, 0.55],
+    [0.33, 0.6],
+    [0.38, 0.66],
+    [0.36, 0.72],
+    [0.26, 0.77],
+    [0.15, 0.86],
+    [0.13, 0.99],
+    [0.07, 0.91],
+    [0.02, 0.98],
+    [-0.05, 0.89],
+    [-0.15, 0.8],
+    [-0.21, 0.66],
+    [-0.25, 0.46],
   ];
   const shape = new Shape(points.map(([x, y]) => new Vector2(x, y)));
   const geometry = new ExtrudeGeometry(shape, {
-    depth: 0.22,
+    depth: 0.2,
     bevelEnabled: true,
-    bevelThickness: 0.05,
+    bevelThickness: 0.06,
     bevelSize: 0.035,
-    bevelSegments: 2,
-    curveSegments: 4,
+    bevelSegments: 4,
+    curveSegments: 1,
   });
-  return geometry.translate(0, 0, -0.11);
+  return geometry.translate(0, 0, -0.1);
 }
 
 function merge(parts) {
@@ -167,18 +173,34 @@ function merge(parts) {
 export function buildPieceGeometries() {
   const geometries = {};
   geometries.p = merge([lathe(PROFILES.p)]);
-  const merlons = [0, 1, 2, 3].map((i) => {
-    const a = (i * Math.PI) / 2 + Math.PI / 4;
-    return box(0.1, 0.09, 0.13, 0.2, 0.745, 0).rotateY(a);
-  });
+
+  // Six square merlons with clear gaps.
+  const merlons = Array.from({ length: 6 }, (_, i) =>
+    box(0.1, 0.1, 0.13, 0.215, 0.77, 0).rotateY((i * Math.PI) / 3),
+  );
   geometries.r = merge([lathe(PROFILES.r), ...merlons]);
+
   geometries.b = merge([lathe(PROFILES.b)]);
-  const crown = Array.from({ length: 8 }, (_, i) => {
-    const a = (i * Math.PI) / 4;
-    return new SphereGeometry(0.035, 8, 6).translate(Math.cos(a) * 0.2, 0.875, Math.sin(a) * 0.2);
+
+  // Coronet of points around the crown, with a ball on top.
+  const points = Array.from({ length: 9 }, (_, i) => {
+    const a = (i * Math.PI * 2) / 9;
+    return new ConeGeometry(0.045, 0.12, 8).translate(Math.cos(a) * 0.225, 1.0, Math.sin(a) * 0.225);
   });
-  geometries.q = merge([lathe(PROFILES.q), new SphereGeometry(0.06, 12, 8).translate(0, 0.99, 0), ...crown]);
-  geometries.k = merge([lathe(PROFILES.k), box(0.07, 0.24, 0.07, 0, 1.05, 0), box(0.2, 0.07, 0.07, 0, 1.08, 0)]);
+  geometries.q = merge([
+    lathe(PROFILES.q),
+    ...points,
+    new SphereGeometry(0.075, 16, 10).translate(0, 1.18, 0),
+  ]);
+
+  // A tall, bold cross.
+  geometries.k = merge([
+    lathe(PROFILES.k),
+    new CylinderGeometry(0.05, 0.07, 0.06, 16).translate(0, 1.18, 0),
+    box(0.085, 0.3, 0.085, 0, 1.34, 0),
+    box(0.26, 0.085, 0.085, 0, 1.37, 0),
+  ]);
+
   geometries.n = merge([lathe(PROFILES.n), knightHead()]);
   return geometries;
 }

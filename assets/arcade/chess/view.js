@@ -5,6 +5,7 @@ import {
   CanvasTexture,
   CircleGeometry,
   Color,
+  DirectionalLight,
   InstancedMesh,
   Matrix4,
   Mesh,
@@ -25,14 +26,14 @@ import { buildPieceGeometries } from "./pieces.js";
 const TYPES = ["p", "n", "b", "r", "q", "k"];
 const CAPACITY = { p: 16, n: 20, b: 20, r: 20, q: 18, k: 2 };
 const COLORS = {
-  light: new Color(0xe9e3d6),
-  dark: new Color(0xbdb4a1),
+  light: new Color(0xdcd1ba),
+  dark: new Color(0xab9d80),
   last: new Color(0xe3be45),
   selected: new Color(0xb93422),
   check: new Color(0xb93422),
   hover: new Color(0xb93422),
-  white: new Color(0xece6d8),
-  black: new Color(0x2c2b25),
+  white: new Color(0xebe4d4),
+  black: new Color(0x2a2924),
 };
 const FILES = "abcdefgh";
 
@@ -114,7 +115,18 @@ export class ChessView {
     // Pieces.
     const geometries = buildPieceGeometries();
     const pieceMaterial = new Material({ color: 0xffffff });
-    if (!quality.low) pieceMaterial.roughness = 0.48;
+    if (!quality.low) {
+      pieceMaterial.roughness = 0.36;
+      // Less ambient fill on the pieces only, so the key light models them.
+      pieceMaterial.envMap = scene.environment;
+      pieceMaterial.envMapIntensity = 0.4;
+    }
+    // A low raking key light gives the pieces a lit and a shaded side, so
+    // ivory pieces separate from the light squares. Low, so the flat board
+    // catches little of it.
+    const key = new DirectionalLight(0xfff3e2, quality.low ? 1 : 2.2);
+    key.position.set(-6, 3.5, 4);
+    scene.add(key);
     this.meshes = {};
     for (const type of TYPES) {
       const mesh = new InstancedMesh(geometries[type], pieceMaterial, CAPACITY[type]);
@@ -299,9 +311,9 @@ export class ChessView {
     for (const piece of this.pieces.values()) {
       const mesh = this.meshes[piece.type];
       const i = counts[piece.type]++;
-      // Knights face the opponent.
-      // Knights face the opponent, turned so their profile reads from the side.
-      const facing = piece.type === "n" ? (piece.color === "w" ? Math.PI / 2 + 0.9 : -Math.PI / 2 + 0.9) : 0;
+      // Knights look across the board toward the opponent, turned mostly
+      // side-on so the horse's profile faces the camera.
+      const facing = piece.type === "n" ? (piece.color === "w" ? 0.45 : Math.PI + 0.45) : 0;
       q.setFromAxisAngle(up, facing + piece.spin);
       p.set(piece.pos.x, piece.pos.y + piece.lift, piece.pos.z);
       s.setScalar(piece.scale);
