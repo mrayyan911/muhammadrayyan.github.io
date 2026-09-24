@@ -17,7 +17,7 @@ import { Tweens } from "./tween.js";
 export function createStage(canvas, { fov = 30, quality, onLost, onRestored } = {}) {
   const renderer = new WebGLRenderer({
     canvas,
-    antialias: window.devicePixelRatio < 2,
+    antialias: true,
     alpha: true,
     powerPreference: "high-performance",
   });
@@ -89,9 +89,11 @@ export function createStage(canvas, { fov = 30, quality, onLost, onRestored } = 
   const size = { w: 1, h: 1 };
 
   function resize() {
-    const box = canvas.parentElement.getBoundingClientRect();
-    const w = Math.max(1, Math.round(box.width));
-    const h = Math.max(1, Math.round(box.height));
+    // Layout size, not the bounding box: a tilted parent's box is larger
+    // than the canvas really draws at, which would blur the image.
+    const parent = canvas.parentElement;
+    const w = Math.max(1, parent.clientWidth);
+    const h = Math.max(1, parent.clientHeight);
     size.w = w;
     size.h = h;
     renderer.setPixelRatio(dpr);
@@ -119,7 +121,10 @@ export function createStage(canvas, { fov = 30, quality, onLost, onRestored } = 
       frameId = requestAnimationFrame(frame);
       return;
     }
-    const start = performance.now();
+    if (pendingDpr) {
+      pendingDpr = false;
+      resize();
+    }
     let keepGoing = tweens.step(now);
     for (const fn of animators) {
       if (fn(now, dt)) keepGoing = true;
@@ -129,29 +134,38 @@ export function createStage(canvas, { fov = 30, quality, onLost, onRestored } = 
     firstFrame();
     last = keepGoing ? now : 0;
     if (keepGoing) {
-      adapt(performance.now() - start, now);
+      adapt(now);
       frameId = requestAnimationFrame(frame);
+    } else {
+      prevNow = 0;
     }
   }
 
+  // Adaptive pixel ratio from the interval between consecutive uncapped
+  // frames. Capped loops (the arcade previews) are slow on purpose, so they
+  // are never sampled. Changes apply at the start of the next frame, so the
+  // canvas is never shown cleared.
   let prevNow = 0;
-  function adapt(cost, now) {
-    const gap = prevNow ? now - prevNow : 16;
+  let pendingDpr = false;
+  function adapt(now) {
+    const gap = prevNow ? now - prevNow : 0;
     prevNow = now;
-    samples.push(Math.max(cost, gap));
-    if (samples.length < 30) return;
-    const avg = samples.reduce((a, b) => a + b, 0) / samples.length;
+    if (stage.fpsCap || !gap || gap > 250) return;
+    samples.push(gap);
+    if (samples.length < 60) return;
+    samples.sort((a, b) => a - b);
+    const median = samples[30];
     samples.length = 0;
-    if (avg > 22 && dpr > 1) {
+    if (median > 24 && dpr > 1) {
       dpr = Math.max(1, dpr - 0.25);
       fastFrames = 0;
-      resize();
-    } else if (avg < 12 && dpr < maxDpr) {
-      fastFrames += 30;
-      if (fastFrames >= 120) {
+      pendingDpr = true;
+    } else if (median < 12 && dpr < maxDpr) {
+      fastFrames += 60;
+      if (fastFrames >= 240) {
         dpr = Math.min(maxDpr, dpr + 0.25);
         fastFrames = 0;
-        resize();
+        pendingDpr = true;
       }
     }
   }
