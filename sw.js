@@ -1,21 +1,8 @@
-﻿const CACHE = "rayyan-portfolio-v5";
+const CACHE = "rayyan-portfolio-v10";
 const ASSET_ROOT = new URL("assets/", self.registration.scope);
-const PRECACHE = [
-  "profile-380.webp",
-  "profile-640.webp",
-  "profile-760.webp",
-  "Imagenix.webp",
-];
-
+// Cache images on demand instead of downloading every portrait size at install.
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(CACHE)
-      .then((cache) =>
-        cache.addAll(PRECACHE.map((path) => new URL(path, ASSET_ROOT).href)),
-      )
-      .then(() => self.skipWaiting()),
-  );
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener("activate", (event) => {
@@ -35,14 +22,16 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Only images are cached. HTML, CSS, JS, and the resume always use the network.
+// Images and the versioned libraries in assets/vendor/ are cached. HTML, CSS,
+// the site's own JS, and the resume always use the network.
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
+  const path = url.pathname;
   if (
     event.request.method !== "GET" ||
     url.origin !== ASSET_ROOT.origin ||
-    !url.pathname.startsWith(ASSET_ROOT.pathname) ||
-    !/\.(webp|png|svg)$/.test(url.pathname)
+    !path.startsWith(ASSET_ROOT.pathname) ||
+    !(/\.(webp|png|svg)$/.test(path) || (path.startsWith(`${ASSET_ROOT.pathname}vendor/`) && path.endsWith(".js")))
   )
     return;
 

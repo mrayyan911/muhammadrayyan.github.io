@@ -7,6 +7,7 @@
   --red: #b93422;
   --serif: "Instrument Serif", Georgia, serif;
   --sans: "DM Sans", Arial, sans-serif;
+  --numerals: "Space Grotesk", "DM Sans", sans-serif;
   --mono: "DM Mono", Consolas, monospace;
   --gutter: clamp(22px, 5.2vw, 90px);
 }
@@ -41,7 +42,8 @@ button {
 button,
 a,
 summary {
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: #b9342220;
+  touch-action: manipulation;
 }
 a:focus-visible,
 button:focus-visible,
@@ -96,6 +98,18 @@ h3 {
   line-height: 1.6;
   letter-spacing: 0.035em;
 }
+.eyebrow .index-number {
+  font-size: 12px;
+}
+.visual-topline .index-number {
+  font-size: 11px;
+}
+.index-number {
+  font-family: var(--numerals);
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0;
+}
 .accent {
   color: var(--red);
 }
@@ -127,15 +141,47 @@ h3 {
   font-size: 14px;
   font-weight: 550;
 }
-.text-link span {
-  transition: transform 0.2s;
-}
-.text-link:hover span {
-  transform: translate(3px, -3px);
-}
 .text-link:hover {
   color: var(--red);
   border-color: var(--red);
+}
+.inline-icon {
+  vertical-align: middle;
+  margin-left: 8px;
+}
+.visual-action {
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 550;
+  text-transform: none;
+  letter-spacing: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.project-visual:hover .visual-action,
+.project-visual:focus-visible .visual-action {
+  text-decoration-thickness: 2px;
+}
+.project-info h3 a {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+.project-info h3 a:hover {
+  text-decoration-color: currentColor;
+}
+.site-footer > div a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.site-header nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 /* Masthead and introduction */
 .site-header {
@@ -151,17 +197,6 @@ h3 {
   letter-spacing: -1.8px;
   display: flex;
   align-items: center;
-}
-.wordmark-symbol {
-  font-size: 15px;
-  letter-spacing: -2px;
-  margin-left: 12px;
-  font-weight: 500;
-  border: 1px solid var(--ink);
-  height: 24px;
-  width: 24px;
-  display: grid;
-  place-items: center;
 }
 .header-note {
   font-size: 10px;
@@ -183,7 +218,6 @@ h3 {
 }
 .nav-count {
   vertical-align: super;
-  font-family: var(--mono);
   font-size: 8px;
   margin-left: 3px;
 }
@@ -259,10 +293,6 @@ h1 {
 .portrait-note figcaption .mono {
   font-size: 8px;
   letter-spacing: 0;
-}
-.portrait-note figcaption > span:last-child {
-  font-size: 24px;
-  line-height: 1;
 }
 .hero-bracket {
   position: absolute;
@@ -346,10 +376,6 @@ h1 {
   gap: 12px;
   font-size: 9px;
   text-transform: uppercase;
-}
-.visual-arrow {
-  font-size: 28px;
-  line-height: 1;
 }
 .journal-visual {
   background: #ded9ce;
@@ -450,9 +476,6 @@ h1 {
 }
 .project-info h3 a:hover {
   color: var(--red);
-}
-.project-info h3 a span {
-  font-size: 24px;
 }
 .project-info > div > p:not(.project-type) {
   font-size: 14px;
@@ -695,7 +718,7 @@ details[open] summary span {
 }
 .skill-row {
   display: grid;
-  grid-template-columns: 40px 1fr 1.2fr 40px;
+  grid-template-columns: 40px 1fr 1.2fr;
   gap: 25px;
   align-items: center;
   padding-block: 30px;
@@ -705,7 +728,7 @@ details[open] summary span {
   border-bottom: 1px solid var(--line);
 }
 .skill-index {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--red);
 }
 .skill-row h3 {
@@ -716,12 +739,6 @@ details[open] summary span {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.8;
-}
-.skill-symbol {
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 30px;
-  color: var(--red);
 }
 .about-section {
   border-top: 1px solid var(--line);
@@ -810,6 +827,11 @@ details[open] summary span {
   color: var(--paper);
   padding-block: 35px 55px;
 }
+.contact-section::selection,
+.contact-section ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
 .contact-top {
   display: flex;
   justify-content: space-between;
@@ -819,7 +841,7 @@ details[open] summary span {
 .contact-section h2 {
   position: relative;
   font-size: clamp(85px, 12.5vw, 185px);
-  line-height: 0.93;
+  line-height: 1.12;
   letter-spacing: -0.06em;
   margin-block: 60px 45px;
 }
@@ -827,18 +849,69 @@ details[open] summary span {
   font-size: 1.13em;
   letter-spacing: -0.03em;
 }
-.contact-arrow {
-  position: absolute;
-  right: 2%;
-  top: 12%;
-  font-family: var(--sans);
-  font-size: 1.2em;
-  font-weight: 400;
-  line-height: 1;
-  transition: transform 0.25s;
+.contact-heading {
+  position: relative;
 }
-.contact-arrow:hover {
-  transform: translate(8px, -8px);
+.mail-note {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: clamp(86px, 15vw, 190px);
+  padding: 4px;
+}
+.mail-note svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mail-note > span {
+  font-size: clamp(10px, 1vw, 13px);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  white-space: nowrap;
+}
+.mail-envelope,
+.mail-letter,
+.mail-flap {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 320ms ease;
+}
+.mail-envelope {
+  transform: rotate(-8deg);
+}
+.mail-flap {
+  transform-origin: center top;
+}
+.mail-note:is(:hover, :focus-visible, :active) .mail-envelope {
+  transform: rotate(0);
+}
+.mail-note:is(:hover, :focus-visible, :active) .mail-flap {
+  transform: scaleY(-1);
+}
+.mail-note:is(:hover, :focus-visible, :active) .mail-letter {
+  transform: translateY(-18px);
+  transition-delay: 100ms;
+}
+@media (max-width: 380px) {
+  .contact-heading {
+    display: grid;
+  }
+  .mail-note {
+    position: static;
+    justify-self: end;
+    margin-block: -15px 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mail-note .mail-envelope,
+  .mail-note:is(:hover, :focus-visible, :active) .mail-letter,
+  .mail-note:is(:hover, :focus-visible, :active) .mail-flap {
+    transform: none;
+  }
 }
 .contact-bottom {
   border-top: 1px solid #ffffff50;
@@ -861,6 +934,19 @@ details[open] summary span {
 }
 .contact-email:hover {
   border-color: var(--paper);
+}
+.contact-bottom .webmail-option {
+  margin: 14px 0 0;
+  font-size: 12px;
+}
+.webmail-option a {
+  display: inline-block;
+  padding-block: 8px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.webmail-option a:hover {
+  text-decoration-thickness: 2px;
 }
 .copy-email {
   color: var(--paper);
@@ -906,10 +992,6 @@ details[open] summary span {
 }
 .site-footer a:hover {
   color: var(--red);
-}
-.skill-symbol {
-  white-space: nowrap;
-  letter-spacing: -0.12em;
 }
 @media (min-width: 1500px) {
   .hero-composition {
@@ -971,7 +1053,7 @@ details[open] summary span {
     gap: 55px;
   }
   .skill-row {
-    grid-template-columns: 25px 1fr 1.2fr 30px;
+    grid-template-columns: 25px 1fr 1.2fr;
     gap: 18px;
   }
   .skill-row h3 {
@@ -991,9 +1073,6 @@ details[open] summary span {
   }
   .wordmark {
     font-size: 27px;
-  }
-  .wordmark-symbol {
-    display: none;
   }
   .site-header nav {
     gap: 20px;
@@ -1028,9 +1107,6 @@ details[open] summary span {
   .portrait-note figcaption .mono {
     font-size: 6px;
   }
-  .portrait-note figcaption > span:last-child {
-    font-size: 18px;
-  }
   .hero-bracket {
     right: auto;
     left: 15px;
@@ -1054,12 +1130,6 @@ details[open] summary span {
   }
   .hero-foot {
     font-size: 7px;
-  }
-  .hero-foot > span:last-child {
-    font-size: 0;
-  }
-  .hero-foot > span:last-child span {
-    font-size: 12px;
   }
   .section-heading {
     align-items: start;
@@ -1123,7 +1193,7 @@ details[open] summary span {
     margin-top: 4px;
   }
   .visual-bottomline > span:first-child {
-    max-width: 80%;
+    min-width: 0;
   }
   .project-info {
     grid-template-columns: 1fr;
@@ -1187,7 +1257,7 @@ details[open] summary span {
     font-size: 14px;
   }
   .skill-row {
-    grid-template-columns: 22px 1fr 28px;
+    grid-template-columns: 22px 1fr;
     gap: 13px;
     padding-block: 24px;
   }
@@ -1197,11 +1267,6 @@ details[open] summary span {
   .skill-row p {
     grid-column: 2;
     grid-row: 2;
-  }
-  .skill-symbol {
-    grid-column: 3;
-    grid-row: 1;
-    font-size: 24px;
   }
   .about-grid {
     grid-template-columns: 1fr;
@@ -1240,11 +1305,6 @@ details[open] summary span {
   .contact-section h2 {
     font-size: 17vw;
     margin-block: 50px 35px;
-  }
-  .contact-arrow {
-    right: 0;
-    top: 20%;
-    font-size: 1em;
   }
   .contact-bottom {
     align-items: start;
@@ -1353,7 +1413,6 @@ details[open] summary span {
   .site-header nav,
   .hero-bracket,
   .copy-area,
-  .contact-arrow,
   .hero-foot {
     display: none;
   }
