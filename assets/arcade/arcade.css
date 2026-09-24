@@ -82,6 +82,12 @@
 .game-stage-preview canvas.is-live {
   opacity: 1;
 }
+.game-stage-preview img {
+  transition: opacity 0.25s;
+}
+.game-stage-preview.is-live img {
+  opacity: 0;
+}
 .cube-visual .game-stage-preview,
 .cube-page .stage {
   view-transition-name: cube-stage;

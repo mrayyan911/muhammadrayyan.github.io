@@ -19,7 +19,10 @@ function makeStage(card, fov) {
   holder.append(canvas);
   const quality = { ...qualityTier(), maxDpr: 1.5 };
   const stage = createStage(canvas, { fov, quality });
-  stage.ready.then(() => canvas.classList.add("is-live"));
+  stage.ready.then(() => {
+    canvas.classList.add("is-live");
+    holder.classList.add("is-live");
+  });
   return { stage, quality, link: card.querySelector(".game-visual") };
 }
 
