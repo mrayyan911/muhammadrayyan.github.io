@@ -265,7 +265,7 @@ h1 {
   transform: rotate(6deg);
   z-index: 2;
   background: #e5dfd2;
-  padding: 10px 10px 0;
+  padding: 10px;
   box-shadow: 0 8px 22px #25251f13;
 }
 .portrait-image {
@@ -381,6 +381,15 @@ h1 {
   background: #ded9ce;
   color: #3d3b34;
   padding: 25px 35px;
+}
+.journal-screenshot {
+  width: 100%;
+  height: auto;
+  margin-block: 28px;
+  box-shadow: 0 10px 30px #3530221a;
+}
+.usage-visual .visual-bottomline {
+  justify-content: flex-end;
 }
 .journal-preview {
   background: #faf8f2;
@@ -1079,12 +1088,20 @@ details[open] summary span {
     font-size: 12px;
   }
   .hero-topline {
-    font-size: 8px;
+    font-size: 11px;
     gap: 10px;
+    flex-wrap: wrap;
   }
   .hero-composition {
-    padding-top: 45px;
-    min-height: 400px;
+    padding-top: 32px;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(68px, 20vw, 100px);
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-name h1 {
+    font-size: 11vw;
   }
   h1 {
     font-size: 15.4vw;
@@ -1092,13 +1109,12 @@ details[open] summary span {
     letter-spacing: -0.075em;
   }
   .hero-name .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
   .portrait-note {
-    width: 150px;
-    top: 220px;
-    right: 6%;
-    padding: 7px 7px 0;
+    position: static;
+    width: 100%;
+    padding: 5px;
     transform: rotate(7deg);
   }
   .portrait-note figcaption {
@@ -1115,8 +1131,9 @@ details[open] summary span {
   }
   .hero-bottom {
     grid-template-columns: 1fr;
-    gap: 22px;
-    padding-block: 40px 30px;
+    gap: 16px;
+    padding-block: 30px;
+    border-bottom: 1px solid var(--line);
   }
   .hero-statement {
     font-size: 33px;
@@ -1151,6 +1168,9 @@ details[open] summary span {
   }
   .section-space {
     padding-block: 65px;
+  }
+  .work-section {
+    padding-top: 48px;
   }
   .journal-visual {
     padding: 18px;
@@ -1345,14 +1365,7 @@ details[open] summary span {
     font-size: 11px;
   }
   .hero-topline {
-    font-size: 7px;
-  }
-  .hero-composition {
-    min-height: 370px;
-  }
-  .portrait-note {
-    top: 200px;
-    width: 140px;
+    font-size: 11px;
   }
   .hero-statement {
     font-size: 29px;
