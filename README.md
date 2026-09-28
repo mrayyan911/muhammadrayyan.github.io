@@ -11,6 +11,7 @@ A personal portfolio for a full-stack developer based in Lahore. Selected projec
 ## What’s inside
 
 - Project previews and expandable implementation notes for JournalPost, Usage Pill, and Imagenix.
+- A development services page and an Imagenix case study, linked from the portfolio.
 - Responsive layouts, a paper-and-red palette, and typography from Google Fonts.
 - A clickable SVG envelope that requests a draft in the visitor's email app, plus a Gmail compose link and a copy-email button.
 - A transparent pixel-avatar favicon that blinks twice on arrival and when returning to the tab.
@@ -39,6 +40,9 @@ Open [localhost:8000](http://localhost:8000). Edit the files and refresh the bro
 | File | Purpose |
 | --- | --- |
 | [index.html](index.html) | Page content, links, metadata, and inline SVG artwork |
+| [services/](services/) | Development services, relevant work, and project contact links |
+| [projects/imagenix/](projects/imagenix/) | Imagenix workflow and implementation case study |
+| [assets/content.css](assets/content.css) | Shared responsive styles for services and case studies |
 | [assets/portfolio.css](assets/portfolio.css) | Design tokens, layouts, interaction states, and responsive styles |
 | [assets/portfolio.js](assets/portfolio.js) | Copyright year, email copying, and service-worker registration |
 | [assets/favicon.js](assets/favicon.js) | Favicon frame switching and motion preferences |
@@ -104,9 +108,9 @@ The service worker caches same-origin PNG, WebP, and SVG assets, and the version
 
 ## Search and AI discovery
 
-The homepage and each arcade page include unique titles and descriptions, canonical URLs, Open Graph and Twitter metadata, and JSON-LD. The homepage describes the website and its owner; the arcade pages describe the game collection and individual games. Keep these aligned with the visible biography when editing the page.
+The homepage, services page, Imagenix case study, and each arcade page include unique titles and descriptions, canonical URLs, Open Graph and Twitter metadata, and JSON-LD. The homepage describes the website and its owner; the content pages include page and breadcrumb metadata; the arcade pages describe the game collection and individual games. Keep these aligned with the visible content when editing a page.
 
-`robots.txt` permits crawling and points to `sitemap.xml`. The sitemap lists the canonical homepage, arcade directory, cube game, and chess game; update its `lastmod` date after meaningful page changes. `llms.txt` provides a short profile, project directory, and arcade links for AI tools. It is not a search-ranking mechanism.
+`robots.txt` permits crawling and points to `sitemap.xml`. The sitemap lists all six canonical pages, including services and the Imagenix case study; update each `lastmod` date after meaningful page changes. `llms.txt` provides a short profile, project directory, services, and arcade links for AI tools. It is not a search-ranking mechanism.
 
 The `profile-*.webp` files are actual resized exports of `assets/profile.webp`. Preserve their declared widths when regenerating them, and keep HTML image dimensions and social-image metadata in sync.
 

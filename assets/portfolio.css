@@ -331,6 +331,11 @@ h1 {
 .hero-intro .text-link {
   margin-top: 12px;
 }
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
 .hero-foot {
   display: flex;
   justify-content: space-between;
@@ -1357,6 +1362,22 @@ details[open] summary span {
     width: 100%;
     justify-content: space-between;
     font-size: 11px;
+  }
+}
+@media (max-width: 600px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .site-header nav {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .site-header nav a {
+    white-space: nowrap;
+    min-height: 44px;
   }
 }
 @media (max-width: 380px) {

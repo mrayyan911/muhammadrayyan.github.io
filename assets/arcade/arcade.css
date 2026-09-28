@@ -30,6 +30,24 @@
 }
 
 /* Arcade index */
+.project-info .game-card-title {
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.game-card-title a {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 6px;
+}
+.game-card-title a:hover {
+  text-decoration-color: currentColor;
+}
+@media (max-width: 1000px) {
+  .project-info .game-card-title {
+    font-size: 25px;
+  }
+}
 .arcade-hero h1 {
   margin-top: 58px;
 }

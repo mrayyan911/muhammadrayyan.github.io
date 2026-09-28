@@ -1,0 +1,128 @@
+/* Services and project stories share the portfolio's type, paper, and rules. */
+.site-header nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.content-hero {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(42px, 6vw, 88px) 52px;
+}
+.content-hero h1 {
+  max-width: 1050px;
+  font-size: clamp(46px, 7.3vw, 106px);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+.content-hero .eyebrow {
+  color: var(--red);
+}
+.content-lede {
+  max-width: 660px;
+  margin-top: 28px;
+  font-size: clamp(17px, 1.7vw, 21px);
+  color: var(--muted);
+}
+.content-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin-top: 24px;
+}
+.content-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 7vw, 110px);
+  padding-block: clamp(42px, 6vw, 80px);
+  border-top: 1px solid var(--line);
+}
+.content-section h2,
+.content-contact h2 {
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.content-section h3 {
+  font-size: 24px;
+}
+.content-copy {
+  max-width: 680px;
+}
+.content-copy p + p,
+.content-copy p + ul {
+  margin-top: 18px;
+}
+.content-copy p {
+  color: var(--muted);
+}
+.content-copy a:not(.text-link),
+.case-caption a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.content-copy a:hover,
+.case-caption a:hover {
+  color: var(--red);
+}
+.content-copy ul {
+  padding-left: 20px;
+  color: var(--muted);
+}
+.content-copy li + li {
+  margin-top: 10px;
+}
+.content-copy .text-link {
+  margin-top: 16px;
+}
+.case-image {
+  padding: clamp(14px, 3vw, 40px);
+  background: #e3dfd5;
+}
+.case-image img {
+  width: 100%;
+  max-width: 1027px;
+  margin-inline: auto;
+}
+.case-caption {
+  padding-block: 16px 32px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.case-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 24px;
+  margin: 0;
+  padding-block: 28px 42px;
+}
+.case-facts dt {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.case-facts dd {
+  margin: 0;
+  font-size: 14px;
+}
+.content-contact {
+  border-top: 1px solid var(--line);
+  padding-block: 52px 72px;
+}
+.content-contact p {
+  max-width: 580px;
+  margin-top: 20px;
+  color: var(--muted);
+}
+.content-contact .text-link {
+  margin-top: 18px;
+}
+@media (max-width: 700px) {
+  .content-section {
+    grid-template-columns: 1fr;
+  }
+  .content-hero {
+    padding-bottom: 40px;
+  }
+  .case-facts {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
