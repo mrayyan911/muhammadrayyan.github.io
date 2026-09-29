@@ -60,30 +60,54 @@ void main(){
     canvas.setAttribute('aria-hidden', 'true');
     const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false });
     if (!gl) return;
-    const vs = compile(gl, gl.VERTEX_SHADER, VERT);
-    const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
-    if (!vs || !fs) return;
-    const prog = gl.createProgram();
-    gl.attachShader(prog, vs);
-    gl.attachShader(prog, fs);
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-    gl.useProgram(prog);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(prog, 'p');
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    const u = n => gl.getUniformLocation(prog, n);
-    const U = { res: u('res'), mouse: u('mouse'), time: u('time'), hover: u('hover'), press: u('press'), rim: u('rim'), radius: u('radius') };
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    let U = null;       // uniform locations; null while the context is lost
+    let checked = false; // whether the first frame has been checked for a visible rim
+
+    function init() {
+      const vs = compile(gl, gl.VERTEX_SHADER, VERT);
+      const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+      if (!vs || !fs) return false;
+      const prog = gl.createProgram();
+      gl.attachShader(prog, vs);
+      gl.attachShader(prog, fs);
+      gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
+      gl.useProgram(prog);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const u = n => gl.getUniformLocation(prog, n);
+      U = { res: u('res'), mouse: u('mouse'), time: u('time'), hover: u('hover'), press: u('press'), rim: u('rim'), radius: u('radius') };
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+      return true;
+    }
+    if (!init()) return;
 
     button.prepend(canvas);
     button.dataset.webgl = '';
 
-    const rimPx = () => parseFloat(getComputedStyle(button).getPropertyValue('--lm-rim')) || 3;
+    // data-webgl hides the CSS rim, so drop it whenever the canvas isn't drawing: phones
+    // often lose WebGL contexts (tab switches, GPU memory pressure) and blank the canvas.
     const state = { hover: 0, hoverT: 0, press: 0, pressT: 0, mx: 0, my: 0, visible: true, raf: 0, w: 0, h: 0 };
+    canvas.addEventListener('webglcontextlost', event => {
+      event.preventDefault(); // allows webglcontextrestored to fire
+      U = null;
+      delete button.dataset.webgl;
+      cancelAnimationFrame(state.raf);
+      state.raf = 0;
+    });
+    canvas.addEventListener('webglcontextrestored', () => {
+      if (!init()) return;
+      checked = false;
+      button.dataset.webgl = '';
+      resize();
+      wake();
+    });
+
+    const rimPx = () => parseFloat(getComputedStyle(button).getPropertyValue('--lm-rim')) || 3;
     let last = performance.now();
     let t = Math.random() * 20;
 
@@ -98,7 +122,18 @@ void main(){
       if (!state.mx) { state.mx = state.w * .5; state.my = state.h * .5; }
     }
 
+    // Some mobile GPUs compile the shader but draw nothing. Read the centre column of the
+    // first frame; if the rim has no visible pixels there, keep the CSS rim instead.
+    function rimIsVisible() {
+      const x = Math.floor(canvas.width / 2);
+      const column = new Uint8Array(canvas.height * 4);
+      gl.readPixels(x, 0, 1, canvas.height, gl.RGBA, gl.UNSIGNED_BYTE, column);
+      for (let i = 3; i < column.length; i += 4) if (column[i] > 8) return true;
+      return false;
+    }
+
     function draw(now) {
+      if (!U) return;
       const dt = Math.min((now - last) / 1000, .05);
       last = now;
       if (!isPaused()) t += dt;
@@ -116,10 +151,19 @@ void main(){
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
+      if (!checked && canvas.width && canvas.height) {
+        checked = true;
+        if (!rimIsVisible()) {
+          U = null;
+          delete button.dataset.webgl;
+          canvas.remove();
+        }
+      }
     }
 
     function loop(now) {
       draw(now);
+      if (!U) { state.raf = 0; return; }
       const settled = Math.abs(state.hover - state.hoverT) < .002 && Math.abs(state.press - state.pressT) < .002;
       state.raf = state.visible && !document.hidden && !(isPaused() && settled) ? requestAnimationFrame(loop) : 0;
     }
