@@ -1,0 +1,5 @@
+#!/bin/sh
+# Rebuild the homepage CSS bundle when any of its source files is staged.
+if git diff --cached --name-only | grep -qE '^assets/(portfolio|cohesion|liquid-metal-button|eye-button|navbar)\.css$'; then
+  python scripts/build_home_css.py && git add assets/home.css index.html
+fi
