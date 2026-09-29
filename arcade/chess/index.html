@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f3f0e9" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Chess | Arcade | Muhammad Rayyan</title>
     <meta name="description" content="Play 3D chess against a bot in your browser. Choose white or black and an easy, medium, or hard level. Built by Muhammad Rayyan with Three.js." />
     <link rel="canonical" href="https://www.rayyandev.tech/arcade/chess/" />
@@ -31,8 +31,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/portfolio.css" />
-    <link rel="stylesheet" href="/assets/arcade/arcade.css" />
+        <link rel="stylesheet" href="/assets/portfolio.css" />
+    <link rel="stylesheet" href="/assets/cohesion.css?v=8" />
+    <link rel="stylesheet" href="/assets/liquid-metal-button.css?v=3" />
+    <link rel="stylesheet" href="/assets/navbar.css?v=3" />
+    <link rel="stylesheet" href="/assets/arcade/arcade.css?v=3" />
     <script type="importmap">
       {
         "imports": {
@@ -45,7 +48,9 @@
     <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.module.min.js" />
     <link rel="modulepreload" href="/assets/vendor/three@0.186.0/three.core.min.js" />
     <link rel="modulepreload" href="/assets/vendor/chess.js@1.4.0/chess.js" />
-    <script src="/assets/portfolio.js" defer></script>
+        <script src="/assets/portfolio.js" defer></script>
+    <script src="/assets/liquid-metal-button.js?v=3" defer></script>
+    <script src="/assets/navbar.js?v=3" defer></script>
     <script src="/assets/favicon.js" defer></script>
     <script type="module" src="/assets/arcade/chess/page.js"></script>
     <script type="application/ld+json">
@@ -62,13 +67,20 @@
       }
     </script>
   </head>
-  <body>
+  <body class="cohesion">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header wrap">
-      <a class="wordmark" href="/" aria-label="Muhammad Rayyan, home">rayyan<span class="accent">.</span></a>
-      <nav aria-label="Main navigation">
-        <a href="/#projects">Work</a><a href="/services/">Services</a><a href="/arcade/" aria-current="page">Arcade</a><a href="/#about">About</a><a href="/#contact">Let’s talk</a>
+    <header class="site-header glass-nav">
+      <a class="nav-avatar" href="/" aria-label="Muhammad Rayyan, home"><img src="/assets/favicon.svg" alt="" width="44" height="44" /></a>
+      <nav id="site-navigation" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/#about">About</a>
+        <a href="/#skills">Stack</a>
+        <a href="/services/">Services</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#contact">Contact</a>
       </nav>
+      <a class="nav-arcade" href="/arcade/" aria-current="page">Arcade</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" hidden><span></span><span></span></button>
     </header>
     <main id="main" class="game-page chess-page wrap">
       <a class="text-link back-link" href="/arcade/">All games</a>
@@ -190,12 +202,14 @@
       </dialog>
     </main>
     <footer class="site-footer wrap">
-      <a class="wordmark" href="/">rayyan<span class="accent">.</span></a>
+      <a class="footer-avatar" href="/" aria-label="Muhammad Rayyan, home"><img src="/assets/favicon.svg" alt="" width="44" height="44" /></a>
       <p class="mono">© <span id="year">2026</span> Muhammad Rayyan</p>
       <div>
         <a href="https://github.com/mrayyan911" target="_blank" rel="noopener noreferrer">GitHub</a
         ><a href="https://linkedin.com/in/muhammadrayyan911" target="_blank" rel="noopener noreferrer">LinkedIn</a
-        ><a href="/arcade/">All games</a>
+        ><a href="/services/">Services</a
+        ><a href="/arcade/">All games</a
+        ><a href="/">Back to portfolio</a>
       </div>
     </footer>
   </body>

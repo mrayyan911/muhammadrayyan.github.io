@@ -682,3 +682,56 @@ dialog.new-game .button-row {
     animation: none;
   }
 }
+
+/* ── Homepage cohesion: rounded panels, pill controls, liquid-metal actions ── */
+.cohesion .arcade-hero { border-top: 0; text-align: center; padding-top: 44px; }
+.cohesion .arcade-hero h1 { margin-top: 0; font-size: clamp(42px, 5.6vw, 76px); font-weight: 600; letter-spacing: -.05em; line-height: 1.08; }
+.cohesion .arcade-hero h1 em { font-size: 1.12em; }
+.arcade-eyebrow { display: inline-block; margin-bottom: 20px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 30px; font-size: 12px; color: var(--muted); }
+.cohesion .arcade-intro { margin-top: 16px; padding-bottom: 0; border-bottom: 0; font-size: 16px; }
+.cohesion .arcade-games { padding-top: 34px; }
+.cohesion .game-visual { border-radius: 32px; padding: 30px 30px 24px; }
+.cohesion .game-visual .visual-bottomline { position: static; justify-content: flex-end; }
+.cohesion .project-info .game-card-title { font-size: 32px; font-weight: 600; }
+.cohesion .game-card-title a { text-decoration: none; }
+.play-pill { text-transform: none; letter-spacing: -.01em; padding: 12px 26px; font-family: var(--sans); font-size: 14px; pointer-events: none; }
+.game-visual:is(:hover, :focus-visible) .play-pill { transform: translateY(-2px); }
+.game-visual:focus-visible { outline: 2px solid var(--red); outline-offset: 5px; }
+
+/* Game pages */
+.cohesion .back-link { font-size: 13px; }
+.cohesion .game-heading { border-bottom: 0; padding-block: 34px 6px; margin-bottom: 26px; }
+.cohesion .game-heading h1 { font-weight: 600; letter-spacing: -.055em; }
+.cohesion .stage { border-radius: 32px; }
+.cohesion .stage-message, .cohesion .promotion, .cohesion .game-over { border-radius: 22px; background: #fff; box-shadow: 0 16px 34px -12px #17172938; }
+.cohesion dialog.new-game { border-radius: 28px; background: #fff; }
+.cohesion dialog.new-game::backdrop { background: #17172966; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.cohesion .stage-hint { border-top: 0; padding-top: 4px; }
+.cohesion .game-panel { padding: 26px; border-radius: 32px; background: #f8f8fa; }
+.cohesion .panel-block, .cohesion .game-panel details { border-top-color: #e7e7eb; }
+.cohesion .stats { border-top-color: #e7e7eb; }
+.cohesion .stats > div { border-bottom-color: #e7e7eb; }
+
+.cohesion .button {
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #dcdce3;
+  transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .2s, background .2s, color .2s;
+}
+.cohesion .button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: inset 0 0 0 1px var(--ink); color: var(--ink); border-color: transparent; }
+.cohesion .button:active:not(:disabled) { transform: translateY(1px); }
+.cohesion .button-primary { background: var(--ink); color: #fff; box-shadow: 0 10px 20px -10px #171719a6; }
+.cohesion .button-primary:hover:not(:disabled) { background: #000; color: #fff; box-shadow: 0 12px 22px -10px #171719c0; }
+.cohesion .button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.cohesion .segmented { border: 0; padding: 4px; gap: 2px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #dcdce3; }
+.cohesion .segmented span { border-radius: 999px; min-height: 36px; }
+.cohesion .segmented label + label span { border-left: 0; }
+.cohesion .segmented input:checked + span { background: var(--ink); color: #fff; }
+.cohesion .move-pad button { border: 0; border-radius: 14px; background: #fff; box-shadow: inset 0 0 0 1px #dcdce3; }
+.cohesion .move-input input { border-radius: 999px; }
+@media (max-width: 720px) {
+  .cohesion .game-visual { padding: 22px 20px 18px; border-radius: 26px; }
+  .cohesion .game-panel { padding: 20px; border-radius: 26px; }
+  .cohesion .stage { border-radius: 26px; }
+}

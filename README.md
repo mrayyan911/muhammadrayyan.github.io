@@ -12,9 +12,10 @@ A personal portfolio for a full-stack developer based in Lahore. Selected projec
 
 - Project previews and expandable implementation notes for JournalPost, Usage Pill, and Imagenix.
 - A development services page and an Imagenix case study, linked from the portfolio.
-- Responsive layouts, a paper-and-red palette, and typography from Google Fonts.
+- Responsive layouts, a white homepage with orange accents, colorful geometric shapes, and typography from Google Fonts.
 - A clickable SVG envelope that requests a draft in the visitor's email app, plus a Gmail compose link and a copy-email button.
 - A transparent pixel-avatar favicon that blinks twice on arrival and when returning to the tab.
+- Floating geometric shapes, a looping name marquee, a portrait flip-up entrance, and scroll reveals. A pause control and reduced-motion preferences stop animation.
 - Keyboard focus styles, a skip link, reduced-motion support, and print styles.
 - An [arcade](https://www.rayyandev.tech/arcade/) with two Three.js games: a Rubik’s cube with a scramble button, timer, and best time, and chess against a bot with three levels.
 
@@ -43,7 +44,9 @@ Open [localhost:8000](http://localhost:8000). Edit the files and refresh the bro
 | [services/](services/) | Development services, relevant work, and project contact links |
 | [projects/imagenix/](projects/imagenix/) | Imagenix workflow and implementation case study |
 | [assets/content.css](assets/content.css) | Shared responsive styles for services and case studies |
+| [assets/cohesion.css](assets/cohesion.css) | Homepage design, hero composition, and responsive overrides |
 | [assets/portfolio.css](assets/portfolio.css) | Design tokens, layouts, interaction states, and responsive styles |
+| [assets/motion.js](assets/motion.js) | Scroll entrances, animation pause control, and reduced-motion preferences |
 | [assets/portfolio.js](assets/portfolio.js) | Copyright year, email copying, and service-worker registration |
 | [assets/favicon.js](assets/favicon.js) | Favicon frame switching and motion preferences |
 | [assets/](assets/) | Portraits, project images, and generated icons |
@@ -59,7 +62,7 @@ Open [localhost:8000](http://localhost:8000). Edit the files and refresh the bro
 
 ## Update the site
 
-Edit content and project links in `index.html`. Colors, fonts, and spacing variables live at the start of `assets/portfolio.css`. The fonts are DM Sans, Instrument Serif, DM Mono, and Space Grotesk for numbering; system fallbacks are defined in CSS.
+Edit content and project links in `index.html`. Shared colors, fonts, and spacing variables live at the start of `assets/portfolio.css`; homepage styling and token overrides live in `assets/cohesion.css`. The fonts are DM Sans, Instrument Serif, DM Mono, and Space Grotesk for numbering; system fallbacks are defined in CSS.
 
 When changing the email address, update `index.html`, the clipboard value in `assets/portfolio.js`, and the résumé source. When changing the domain, update `CNAME`, the canonical and Open Graph URLs in `index.html`, `robots.txt`, `sitemap.xml`, and the résumé source.
 
