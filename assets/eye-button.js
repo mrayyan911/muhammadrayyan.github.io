@@ -30,6 +30,20 @@
   addEventListener('pointermove', queue, { passive: true });
   addEventListener('pointerdown', queue, { passive: true });
 
+  // With no pointer (touch), the eyes glance around on their own until the first touch.
+  if (!matchMedia('(hover: hover)').matches) {
+    const spots = [[-1, .2], [1, -.3], [.3, 1], [-.6, -1], [1, .4]];
+    let i = 0;
+    setInterval(() => {
+      if (reduced.matches || document.hidden || document.body.classList.contains('motion-paused')) return;
+      const r = button.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      const [x, y] = spots[i++ % spots.length];
+      pointer = { x: r.left + r.width / 2 + x * 200, y: r.top + r.height / 2 + y * 200 };
+      look();
+    }, 1400);
+  }
+
   const status = document.querySelector('#copy-status');
   if (status) {
     let timer;
