@@ -40,13 +40,8 @@
     <link rel="sitemap" type="application/xml" href="sitemap.xml" />
     <link id="favicon" rel="icon" href="assets/favicon-avatar.png?v=3" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=3" sizes="180x180" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/portfolio.css" />
+    <link rel="preload" href="assets/fonts/dm-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/portfolio.css?v=2" />
     <link rel="stylesheet" href="assets/cohesion.css?v=19" />
     <link rel="stylesheet" href="assets/liquid-metal-button.css?v=3" />
     <link rel="stylesheet" href="assets/eye-button.css?v=3" />
@@ -231,7 +226,7 @@
               <span>JournalPost / Digital publishing</span
               ><span><span class="index-number">01</span> — Current work</span>
             </div>
-            <img class="journal-screenshot" src="assets/journalpost-home.webp"
+            <img class="journal-screenshot" src="assets/journalpost-home.webp" srcset="assets/journalpost-home-720.webp 720w, assets/journalpost-home.webp 1440w" sizes="(max-width: 700px) 92vw, 760px"
               alt="JournalPost homepage with category navigation and a featured news story"
               width="1440" height="770" loading="lazy" decoding="async" />
             <div class="visual-bottomline mono">
