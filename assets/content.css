@@ -126,3 +126,35 @@
     gap: 18px;
   }
 }
+
+/* ── Homepage cohesion: soft rounded panels, pill actions, liquid-metal CTAs ── */
+.cohesion .content-hero { border-top: 0; padding-block: 40px 44px; }
+.cohesion .content-hero h1 { font-weight: 600; letter-spacing: -.05em; line-height: 1.06; font-size: clamp(42px, 6.4vw, 92px); }
+.cohesion .content-hero h1 em { font-size: 1.1em; }
+.cohesion .content-hero .eyebrow, .cohesion .content-section .eyebrow, .cohesion .content-contact .eyebrow {
+  display: inline-block; margin-bottom: 20px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 30px;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0; text-transform: none; color: var(--muted);
+}
+.cohesion .content-actions { align-items: center; gap: 14px 28px; margin-top: 30px; }
+.cohesion .content-section {
+  margin-top: 16px; padding: clamp(28px, 5vw, 64px); border: 0; border-radius: 40px; background: #f8f8fa;
+}
+.cohesion .content-section h2, .cohesion .content-contact h2 { font-weight: 600; letter-spacing: -.05em; line-height: 1.08; }
+.cohesion .content-section h2 em, .cohesion .content-contact h2 em { font-size: 1.09em; }
+.cohesion .content-copy a:not(.text-link):not(.liquid-button):hover, .cohesion .case-caption a:hover { color: var(--red); }
+.cohesion .content-copy .liquid-button { margin-top: 16px; }
+.cohesion .case-image { border-radius: 32px; background: #fff0e1; }
+.cohesion .case-image img { border-radius: 12px; box-shadow: 0 16px 32px -12px #3b326030; }
+.cohesion .case-facts { margin-top: 12px; padding-inline: 8px; }
+.cohesion .content-contact {
+  margin: 16px 0 72px; padding: clamp(32px, 6vw, 80px); border-top: 0; border-radius: 48px; background: #f1edff;
+}
+.cohesion .content-contact p { color: #5b5669; }
+@media (max-width: 700px) {
+  .cohesion .content-section { border-radius: 28px; }
+  .cohesion .content-contact { border-radius: 32px; }
+}
+.cohesion [id$="-title"] { scroll-margin-top: 110px; }
+/* Caps line: same weight as the headline, reduced size and a touch of tracking so the capitals sit level with the lowercase line below. */
+.cohesion .content-hero h1 .caps { display: inline-block; margin-bottom: .16em; text-transform: uppercase; font-weight: 700; letter-spacing: .01em; font-size: .62em; line-height: 1; }
+@media (min-width: 900px) { .cohesion .content-hero h1 .caps { white-space: nowrap; } }

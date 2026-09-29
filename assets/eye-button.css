@@ -1,0 +1,93 @@
+/* Copy-email button with eyes that follow the pointer. Overrides .copy-email.
+   The eyes never change size: blinking and the happy squint use lids that slide over them. */
+.cohesion .copy-email.eye-button {
+  --eye: 34px;
+  --pupil: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 6px 7px 6px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1), background .2s;
+}
+.cohesion .copy-email.eye-button[hidden] { display: none; }
+.cohesion .copy-email.eye-button:hover { background: #000; color: #fff; transform: translateY(-2px); }
+.cohesion .copy-email.eye-button:active { transform: translateY(1px); }
+.cohesion .copy-email.eye-button:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.eye-button:hover .pupil { --pupil: 15px; }
+.eye-button:active .pupil { --pupil: 17px; }
+
+/* Both labels share one grid cell, so the button width never changes. */
+.eye-label { display: inline-grid; }
+.eye-label > span { grid-area: 1 / 1; transition: opacity .2s, transform .3s cubic-bezier(.2, .8, .2, 1); }
+.eye-label-done { opacity: 0; transform: translateY(8px); }
+.eye-button[data-copied] .eye-label-idle { opacity: 0; transform: translateY(-8px); }
+.eye-button[data-copied] .eye-label-done { opacity: 1; transform: none; }
+
+.eyes { display: inline-flex; gap: 4px; }
+.eye {
+  position: relative;
+  flex: none;
+  width: var(--eye);
+  height: var(--eye);
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  --squint: 0%; /* share of each half the lids cover; blink goes to 100% */
+}
+.eye::before, .eye::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  height: 51%;
+  z-index: 2;
+  background: var(--ink);
+  transition: transform .3s cubic-bezier(.3, 1.4, .5, 1);
+  animation-duration: 4.6s;
+  animation-iteration-count: infinite;
+  animation-delay: var(--blink-delay, 0s);
+}
+.eye::before { top: 0; transform: translateY(calc(-100% + var(--squint))); animation-name: lid-top; }
+.eye::after { bottom: 0; transform: translateY(calc(100% - var(--squint))); animation-name: lid-bottom; }
+.eye:nth-child(2) { --blink-delay: .04s; }
+
+.pupil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--pupil);
+  height: var(--pupil);
+  margin: calc(var(--pupil) / -2) 0 0 calc(var(--pupil) / -2);
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translate(var(--px, 0px), var(--py, 0px));
+  transition: transform .09s linear, width .2s, height .2s, margin .2s;
+}
+
+/* Copied: a happy squint, and the pupils nod once. */
+.eye-button[data-copied] .eye { --squint: 30%; }
+.eye-button[data-copied] .eye::before, .eye-button[data-copied] .eye::after { animation: none; }
+.eye-button[data-copied] .pupil { animation: pupil-nod .5s cubic-bezier(.3, 1.4, .5, 1); }
+
+@keyframes lid-top { 0%, 92%, 100% { transform: translateY(-100%); } 95% { transform: translateY(0); } }
+@keyframes lid-bottom { 0%, 92%, 100% { transform: translateY(100%); } 95% { transform: translateY(0); } }
+@keyframes pupil-nod { 35% { transform: translate(var(--px, 0px), calc(var(--py, 0px) + 4px)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .eye::before, .eye::after { animation: none; }
+  .pupil, .eye-button { transition: none; }
+  .eye-button[data-copied] .pupil { animation: none; }
+}
+.motion-paused .eye::before, .motion-paused .eye::after { animation: none; }
+
+/* Reserve the status line's height so the button doesn't jump when it appears. */
+.cohesion .copy-area [role="status"] { min-height: 1.5em; }

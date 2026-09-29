@@ -1,0 +1,165 @@
+/* Liquid metal bar: dark surface, chrome rim drawn by liquid-metal-button.js
+   (conic-gradient fallback below when WebGL is unavailable). */
+.cohesion .glass-nav {
+  --lm-rim: 3px;
+  position: sticky;
+  top: 18px;
+  z-index: 20;
+  isolation: isolate;
+  width: min(850px, calc(100% - 40px));
+  min-height: 66px;
+  margin: 22px auto 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 0;
+  border-radius: 100px;
+  background: #1b2028;
+  box-shadow: 0 18px 34px -16px #0b1220b3, 0 3px 6px #0b122040;
+}
+.glass-nav::before { /* static rim / fallback */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  border-radius: inherit;
+  padding: var(--lm-rim);
+  background: conic-gradient(from 210deg, #8995a6, #f4f8ff, #1a2130, #dbe6f5, #fff, #6f7f95, #0d131d, #eaf3ff, #8995a6);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.glass-nav::after { /* glass sheen */
+  content: '';
+  position: absolute;
+  inset: var(--lm-rim);
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(90% 120% at 50% -40%, #ffffff1f, transparent 60%);
+  pointer-events: none;
+}
+.glass-nav[data-webgl]::before { opacity: 0; }
+.glass-nav > canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; border-radius: inherit; pointer-events: none; }
+.glass-nav .nav-avatar {
+  flex: 0 0 44px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #3a414d, #232830);
+  box-shadow: inset 0 1px 1px #ffffff40, 0 2px 5px #0006;
+  transition: transform .3s;
+}
+.glass-nav .nav-avatar img { width: 36px; height: 36px; image-rendering: pixelated; }
+.glass-nav .nav-avatar:hover { transform: rotate(-9deg); }
+.cohesion .glass-nav nav { display: flex; align-items: center; gap: 2px; margin: 0; }
+.cohesion .glass-nav nav a {
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border-radius: 40px;
+  font-size: 13px;
+  color: #b9bfc9;
+  transition: background .25s, color .25s;
+}
+/* Light follows the pointer across the links. */
+.cohesion .glass-nav nav a:hover {
+  background: radial-gradient(90px 60px at var(--lx, 50%) var(--ly, 50%), #f5f8ff33, #f5f8ff0f 70%);
+  color: #f5f8ff;
+  text-decoration: none;
+}
+.cohesion .glass-nav nav a[aria-current] {
+  background: linear-gradient(#ffffff1f, #ffffff0d);
+  box-shadow: inset 0 1px 1px #ffffff2e;
+  color: #f5f8ff;
+  text-decoration: none;
+}
+.glass-nav .nav-arcade {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 10px 23px;
+  border: 0;
+  border-radius: 40px;
+  background: linear-gradient(#f7f9fd, #c3ccd9);
+  box-shadow: inset 0 1px 1px #fff, inset 0 -2px 3px #5a667a55, 0 3px 9px #0006;
+  color: #12161c;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform .25s, box-shadow .25s;
+}
+.glass-nav .nav-arcade::before {
+  content: '';
+  position: absolute;
+  inset: -60% auto -60% -70%;
+  width: 45%;
+  transform: skewX(-25deg);
+  background: linear-gradient(90deg, transparent, #ffffffcc, transparent);
+  transition: left .65s;
+  pointer-events: none;
+}
+.glass-nav .nav-arcade:hover::before,
+.glass-nav .nav-arcade:focus-visible::before { left: 135%; }
+.glass-nav .nav-arcade:hover { transform: translateY(-1px); box-shadow: inset 0 1px 1px #fff, inset 0 -2px 3px #5a667a55, 0 5px 13px #0008; }
+.glass-nav a:focus-visible, .glass-nav .nav-toggle:focus-visible { outline: 2px solid #9dbcf5; outline-offset: 2px; }
+.glass-nav .nav-toggle { display: none; }
+.cohesion main > section[id] { scroll-margin-top: 100px; }
+.cohesion .skip-link { z-index: 30; }
+@media (max-width: 760px) {
+  .cohesion .glass-nav {
+    top: 12px;
+    width: calc(100% - 28px);
+    margin-top: 14px;
+    padding: 9px;
+    min-height: 62px;
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    gap: 8px;
+    border-radius: 32px;
+  }
+  .glass-nav .nav-avatar { grid-column: 1; grid-row: 1; }
+  .glass-nav .nav-arcade { grid-column: 2; grid-row: 1; justify-self: end; padding-inline: 19px; font-size: 12px; }
+  .cohesion .glass-nav nav { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 5px 2px 3px; width: 100%; }
+  .cohesion .glass-nav nav a { padding: 10px 8px; font-size: 13px; }
+  .cohesion .glass-nav.nav-ready nav { display: none; }
+  .cohesion .glass-nav.nav-ready[data-open] nav { display: grid; animation: glass-unfold .25s ease-out; }
+  .glass-nav .nav-toggle:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    grid-column: 3;
+    grid-row: 1;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: #ffffff1a;
+    color: #f5f8ff;
+  }
+  .nav-toggle span { display: block; width: 16px; height: 1.5px; background: currentColor; transition: transform .25s; }
+  .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.25px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+}
+@keyframes glass-unfold { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .glass-nav *, .glass-nav *::before { animation: none !important; transition: none !important; }
+}
+@media print { .cohesion .glass-nav { position: static; display: none; } }
+
+/* Cross-page transitions: pages fade while the nav stays put. */
+@view-transition { navigation: auto; }
+.glass-nav { view-transition-name: site-nav; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; animation-timing-function: cubic-bezier(.2, .7, .2, 1); }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }

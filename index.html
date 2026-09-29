@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f3f0e9" />
+    <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
       content="Full-stack developer in Lahore, Pakistan, building web applications with React, Next.js, Node.js, and Python. Explore my projects and discuss your next build."
@@ -47,7 +47,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/portfolio.css" />
+    <link rel="stylesheet" href="assets/cohesion.css?v=13" />
+    <link rel="stylesheet" href="assets/liquid-metal-button.css?v=3" />
+    <link rel="stylesheet" href="assets/eye-button.css?v=3" />
+    <link rel="stylesheet" href="assets/navbar.css?v=3" />
     <script src="assets/portfolio.js" defer></script>
+    <script src="assets/motion.js" defer></script>
+    <script src="assets/liquid-metal-button.js?v=3" defer></script>
+    <script src="assets/eye-button.js?v=3" defer></script>
+    <script src="assets/navbar.js?v=3" defer></script>
     <script src="assets/favicon.js" defer></script>
     <script type="application/ld+json">
 {
@@ -102,67 +110,98 @@
 }
     </script>
   </head>
-  <body>
+  <body class="cohesion">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header wrap">
-      <a class="wordmark" href="#home" aria-label="Muhammad Rayyan, home"
-        >rayyan<span class="accent">.</span
-        ></a
-      >
-      <nav aria-label="Main navigation">
-        <a href="#projects">Work</a>
-        <a href="services/">Services</a>
-        <a href="arcade/">Arcade</a>
+    <header class="site-header glass-nav">
+      <a class="nav-avatar" href="#home" aria-label="Muhammad Rayyan, home"><img src="assets/favicon.svg" alt="" width="44" height="44" /></a>
+      <nav id="site-navigation" aria-label="Main navigation">
+        <a href="#home" class="nav-home" aria-current="location">Home</a>
         <a href="#about">About</a>
-        <a href="#contact">Let’s talk</a>
+        <a href="#skills">Stack</a>
+        <a href="services/">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <a class="nav-arcade" href="arcade/">Play a little</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" hidden><span></span><span></span></button>
     </header>
     <main id="main">
-      <section class="hero wrap" id="home" aria-labelledby="hero-title">
-        <div class="hero-topline mono">
-          <span
-            ><span class="status-dot" aria-hidden="true"></span> Building at
-            Journal Post Group</span
-          ><span>Lahore, Pakistan</span>
+      <section class="cohesion-hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-greeting">
+          <h1 id="hero-title">Hi, I&#8217;m <em>Rayyan!</em></h1>
+          <p>I turn ideas into things you can use.</p>
         </div>
-        <div class="hero-composition">
-          <div class="hero-name">
-            <span class="eyebrow mono">Hello, I’m</span>
-            <h1 id="hero-title">
-              Muhammad<br />Rayyan<span class="accent">.</span>
-            </h1>
-          </div>
-          <figure class="portrait-note">
-            <div class="portrait-image">
-              <img
-                src="assets/profile-380.webp?v=2"
-                srcset="
-                  assets/profile-380.webp?v=2 380w,
-                  assets/profile-760.webp?v=2 760w
-                "
-                sizes="(max-width: 700px) 100px, 245px"
-                alt="Muhammad Rayyan"
-                width="380"
-                height="380"
-                fetchpriority="high"
-              />
-            </div>
+        <div class="hero-stage">
+          <div class="hero-marquee" aria-hidden="true"><div class="marquee-track"><span>MUHAMMAD RAYYAN&nbsp;&nbsp;</span><span>MUHAMMAD RAYYAN&nbsp;&nbsp;</span></div></div>
+          <svg class="shape shape-cone" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g-cone" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#ffd7a3"/><stop offset=".5" stop-color="#ff8f45"/><stop offset="1" stop-color="#df4f1a"/></linearGradient>
+              <filter id="b-cone"><feGaussianBlur stdDeviation="3"/></filter>
+            </defs>
+            <path d="M100 12c5 0 9 5 13 15l62 122c7 13-1 27-16 31-32 8-88 8-120 0-15-4-23-18-16-31L87 27c4-10 8-15 13-15z" fill="url(#g-cone)"/>
+            <path d="M92 40 52 138" stroke="#fff" stroke-opacity=".55" stroke-width="11" stroke-linecap="round" filter="url(#b-cone)"/>
+            <path d="M40 176c30 9 90 9 120 0" stroke="#a63a10" stroke-opacity=".28" stroke-width="10" stroke-linecap="round" fill="none" filter="url(#b-cone)"/>
+          </svg>
+          <svg class="shape shape-orb" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <radialGradient id="g-orb" cx=".33" cy=".26" r=".85"><stop offset="0" stop-color="#f8efff"/><stop offset=".28" stop-color="#d9adf5"/><stop offset=".62" stop-color="#9a66c8"/><stop offset="1" stop-color="#4a2270"/></radialGradient>
+              <filter id="b-orb"><feGaussianBlur stdDeviation="4"/></filter>
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="url(#g-orb)"/>
+            <ellipse cx="72" cy="56" rx="28" ry="16" transform="rotate(-32 72 56)" fill="#fff" fill-opacity=".55" filter="url(#b-orb)"/>
+            <circle cx="100" cy="100" r="90" fill="none" stroke="#c99cf0" stroke-opacity=".35" stroke-width="3"/>
+          </svg>
+          <svg class="shape shape-capsule" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g-cap" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a8e0ff"/><stop offset=".5" stop-color="#3d86ff"/><stop offset="1" stop-color="#5a38d6"/></linearGradient>
+              <filter id="b-cap"><feGaussianBlur stdDeviation="2.5"/></filter>
+            </defs>
+            <rect x="58" y="8" width="84" height="184" rx="42" fill="url(#g-cap)"/>
+            <rect x="72" y="24" width="14" height="112" rx="7" fill="#fff" fill-opacity=".55" filter="url(#b-cap)"/>
+          </svg>
+          <svg class="shape shape-donut" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g-donut" x1=".1" y1="0" x2=".9" y2="1"><stop offset="0" stop-color="#c6fbff"/><stop offset=".45" stop-color="#4fcfd3"/><stop offset="1" stop-color="#127f8c"/></linearGradient>
+              <filter id="b-donut"><feGaussianBlur stdDeviation="3"/></filter>
+            </defs>
+            <circle cx="100" cy="100" r="64" fill="none" stroke="url(#g-donut)" stroke-width="46"/>
+            <circle cx="100" cy="100" r="41" fill="none" stroke="#0b6470" stroke-opacity=".28" stroke-width="5" filter="url(#b-donut)"/>
+            <path d="M52 78a56 56 0 0 1 44-34" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="9" stroke-linecap="round" filter="url(#b-donut)"/>
+          </svg>
+          <svg class="shape shape-cube" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g-cube-t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff6bd"/><stop offset="1" stop-color="#fcd456"/></linearGradient>
+              <linearGradient id="g-cube-l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbc542"/><stop offset="1" stop-color="#ee9a24"/></linearGradient>
+              <linearGradient id="g-cube-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ec9822"/><stop offset="1" stop-color="#c8701a"/></linearGradient>
+            </defs>
+            <g stroke-width="16" stroke-linejoin="round">
+              <polygon points="100,26 168,64 100,102 32,64" fill="url(#g-cube-t)" stroke="url(#g-cube-t)"/>
+              <polygon points="32,70 96,106 96,178 32,142" fill="url(#g-cube-l)" stroke="url(#g-cube-l)"/>
+              <polygon points="168,70 104,106 104,178 168,142" fill="url(#g-cube-r)" stroke="url(#g-cube-r)"/>
+            </g>
+            <path d="M58 60 96 38" stroke="#fff" stroke-opacity=".7" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <svg class="shape shape-plus" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="g-plus" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb3a1"/><stop offset=".55" stop-color="#ff5c7e"/><stop offset="1" stop-color="#d1265a"/></linearGradient>
+              <filter id="b-plus"><feGaussianBlur stdDeviation="2.5"/></filter>
+            </defs>
+            <path d="M100 40v120M40 100h120" stroke="url(#g-plus)" stroke-width="52" stroke-linecap="round"/>
+            <path d="M84 52v44M52 84h44" stroke="#fff" stroke-opacity=".5" stroke-width="9" stroke-linecap="round" filter="url(#b-plus)"/>
+          </svg>
+          <figure class="hero-portrait">
+            <img src="assets/profile-380.webp?v=2" srcset="assets/profile-380.webp?v=2 380w, assets/profile-760.webp?v=2 760w" sizes="(max-width: 600px) 210px, 280px" alt="Muhammad Rayyan" width="380" height="380" fetchpriority="high" />
+            <figcaption> A little code. A lot of curiosity.</figcaption>
           </figure>
+          <span class="hero-sticker sticker-left">React &amp; Next.js</span>
+          <span class="hero-sticker sticker-right">Python &amp; AI</span>
         </div>
-        <div class="hero-bottom">
-          <p class="hero-statement">
-            Full-stack developer.
-          </p>
-          <div class="hero-intro">
-            <p>
-              Based in Lahore, Pakistan. I build web applications with React, Next.js, Node.js, and Python.
-            </p>
-            <div class="hero-links">
-              <a class="text-link" href="#projects">View projects</a>
-              <a class="text-link" href="services/">Work with me</a>
-            </div>
-          </div>
+        <div class="hero-invitation">
+          <p><span class="status-dot" aria-hidden="true"></span>Currently building at Journal Post Group</p>
+          <a class="liquid-button" href="#contact">Let&#8217;s build something</a>
+          <a class="hero-work-link" href="#projects">Explore my work</a>
         </div>
+        <div class="hero-footnote"><span>WEB APPS / DEVELOPER TOOLS / AI</span><button class="motion-toggle" type="button" aria-pressed="false" hidden>Pause animation</button></div>
       </section>
 
       <section
@@ -170,13 +209,14 @@
         id="projects"
         aria-labelledby="work-title"
       >
-        <div class="section-heading">
+        <div class="section-heading heading-with-action">
           <div>
             <p class="eyebrow mono">
               <span class="accent index-number">01 /</span> Projects
             </p>
-            <h2 id="work-title">Selected work<span class="accent">.</span></h2>
+            <h2 id="work-title">Selected <em>work.</em></h2>
           </div>
+          <a class="liquid-button" href="services/">All services</a>
         </div>
         <article class="project project-featured">
           <a
@@ -409,15 +449,17 @@
               <p class="eyebrow mono">
                 <span class="accent index-number">02 /</span> Since 2025
               </p>
-              <h2 id="experience-title">Work experience<span class="accent">.</span></h2>
+              <h2 id="experience-title">Where I&#8217;ve <em>built.</em></h2>
             </div>
             <a
-              class="text-link"
+              class="cta-button"
               href="MuhammadRayyan-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              >View résumé</a
-            >
+              ><span class="cta-label">Read my CV</span
+              ><span class="cta-chip" aria-hidden="true"
+                ><svg viewBox="0 0 14 14" width="14" height="14"><path d="M10.65 7.88H0V6.13h10.65l-4.9-4.9L7 0l7 7-7 7-1.25-1.22z" fill="currentColor"/></svg></span
+            ></a>
           </div>
           <article class="experience-row">
             <div class="experience-meta">
@@ -487,45 +529,20 @@
         id="skills"
         aria-labelledby="skills-title"
       >
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow mono">
-              <span class="accent index-number">03 /</span> Toolkit
-            </p>
-            <h2 id="skills-title">Tools I work with<span class="accent">.</span></h2>
+        <h2 class="toolkit-title" id="skills-title"><span>Toolkit</span></h2>
+        <div class="logo-carousel" role="group" aria-label="Tools and technologies I work with">
+          <div class="logo-row ">
+            <div class="logo-track">
+              <ul class="logo-list"><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/react.svg);--brand:#61DAFB" aria-hidden="true"></span><span>React</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nextdotjs.svg);--brand:#000000" aria-hidden="true"></span><span>Next.js</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/typescript.svg);--brand:#3178C6" aria-hidden="true"></span><span>TypeScript</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/javascript.svg);--brand:#F7DF1E" aria-hidden="true"></span><span>JavaScript</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/html5.svg);--brand:#E34F26" aria-hidden="true"></span><span>HTML</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/css.svg);--brand:#663399" aria-hidden="true"></span><span>CSS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/tailwindcss.svg);--brand:#06B6D4" aria-hidden="true"></span><span>Tailwind CSS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/payloadcms.svg);--brand:#000000" aria-hidden="true"></span><span>Payload CMS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nodedotjs.svg);--brand:#5FA04E" aria-hidden="true"></span><span>Node.js</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nestjs.svg);--brand:#E0234E" aria-hidden="true"></span><span>NestJS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/python.svg);--brand:#3776AB" aria-hidden="true"></span><span>Python</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/fastapi.svg);--brand:#009688" aria-hidden="true"></span><span>FastAPI</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/django.svg);--brand:#092E20" aria-hidden="true"></span><span>Django</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/postgresql.svg);--brand:#4169E1" aria-hidden="true"></span><span>PostgreSQL</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/mongodb.svg);--brand:#47A248" aria-hidden="true"></span><span>MongoDB</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/redis.svg);--brand:#FF4438" aria-hidden="true"></span><span>Redis</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/prisma.svg);--brand:#2D3748" aria-hidden="true"></span><span>Prisma</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/sqlalchemy.svg);--brand:#D71F00" aria-hidden="true"></span><span>SQLAlchemy</span></li></ul>
+              <ul class="logo-list" aria-hidden="true"><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/react.svg);--brand:#61DAFB" aria-hidden="true"></span><span>React</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nextdotjs.svg);--brand:#000000" aria-hidden="true"></span><span>Next.js</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/typescript.svg);--brand:#3178C6" aria-hidden="true"></span><span>TypeScript</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/javascript.svg);--brand:#F7DF1E" aria-hidden="true"></span><span>JavaScript</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/html5.svg);--brand:#E34F26" aria-hidden="true"></span><span>HTML</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/css.svg);--brand:#663399" aria-hidden="true"></span><span>CSS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/tailwindcss.svg);--brand:#06B6D4" aria-hidden="true"></span><span>Tailwind CSS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/payloadcms.svg);--brand:#000000" aria-hidden="true"></span><span>Payload CMS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nodedotjs.svg);--brand:#5FA04E" aria-hidden="true"></span><span>Node.js</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/nestjs.svg);--brand:#E0234E" aria-hidden="true"></span><span>NestJS</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/python.svg);--brand:#3776AB" aria-hidden="true"></span><span>Python</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/fastapi.svg);--brand:#009688" aria-hidden="true"></span><span>FastAPI</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/django.svg);--brand:#092E20" aria-hidden="true"></span><span>Django</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/postgresql.svg);--brand:#4169E1" aria-hidden="true"></span><span>PostgreSQL</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/mongodb.svg);--brand:#47A248" aria-hidden="true"></span><span>MongoDB</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/redis.svg);--brand:#FF4438" aria-hidden="true"></span><span>Redis</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/prisma.svg);--brand:#2D3748" aria-hidden="true"></span><span>Prisma</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/sqlalchemy.svg);--brand:#D71F00" aria-hidden="true"></span><span>SQLAlchemy</span></li></ul>
+            </div>
           </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-index index-number">01</span>
-          <h3>Interfaces &amp; web apps</h3>
-          <p>
-            React, Next.js, TypeScript, JavaScript, HTML, CSS, Tailwind CSS,
-            Payload CMS
-          </p>
-        </div>
-        <div class="skill-row">
-          <span class="skill-index index-number">02</span>
-          <h3>Backends &amp; data</h3>
-          <p>
-            Node.js, NestJS, Python, FastAPI, Django, PostgreSQL, MongoDB,
-            Redis, Prisma, SQLAlchemy
-          </p>
-        </div>
-        <div class="skill-row">
-          <span class="skill-index index-number">03</span>
-          <h3>AI &amp; computer vision</h3>
-          <p>
-            PyTorch, Stable Diffusion, ControlNet, Grounding DINO, Google Vertex
-            AI
-          </p>
-        </div>
-        <div class="skill-row">
-          <span class="skill-index index-number">04</span>
-          <h3>Shipping &amp; tooling</h3>
-          <p>
-            Docker, CI/CD, Git, Supabase, Firebase, Vercel, Railway, Render,
-            Electron
-          </p>
+          <div class="logo-row logo-row-reverse">
+            <div class="logo-track">
+              <ul class="logo-list"><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/pytorch.svg);--brand:#EE4C2C" aria-hidden="true"></span><span>PyTorch</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/googlecloud.svg);--brand:#4285F4" aria-hidden="true"></span><span>Vertex AI</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/claude.svg);--brand:#D97757" aria-hidden="true"></span><span>Claude</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/openai.svg);--brand:#10A37F" aria-hidden="true"></span><span>Codex</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/docker.svg);--brand:#2496ED" aria-hidden="true"></span><span>Docker</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/git.svg);--brand:#F03C2E" aria-hidden="true"></span><span>Git</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/githubactions.svg);--brand:#2088FF" aria-hidden="true"></span><span>GitHub Actions</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/supabase.svg);--brand:#3FCF8E" aria-hidden="true"></span><span>Supabase</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/firebase.svg);--brand:#DD2C00" aria-hidden="true"></span><span>Firebase</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/vercel.svg);--brand:#000000" aria-hidden="true"></span><span>Vercel</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/railway.svg);--brand:#0B0D0E" aria-hidden="true"></span><span>Railway</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/render.svg);--brand:#000000" aria-hidden="true"></span><span>Render</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/electron.svg);--brand:#47848F" aria-hidden="true"></span><span>Electron</span></li></ul>
+              <ul class="logo-list" aria-hidden="true"><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/pytorch.svg);--brand:#EE4C2C" aria-hidden="true"></span><span>PyTorch</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/googlecloud.svg);--brand:#4285F4" aria-hidden="true"></span><span>Vertex AI</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/claude.svg);--brand:#D97757" aria-hidden="true"></span><span>Claude</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/openai.svg);--brand:#10A37F" aria-hidden="true"></span><span>Codex</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/docker.svg);--brand:#2496ED" aria-hidden="true"></span><span>Docker</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/git.svg);--brand:#F03C2E" aria-hidden="true"></span><span>Git</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/githubactions.svg);--brand:#2088FF" aria-hidden="true"></span><span>GitHub Actions</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/supabase.svg);--brand:#3FCF8E" aria-hidden="true"></span><span>Supabase</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/firebase.svg);--brand:#DD2C00" aria-hidden="true"></span><span>Firebase</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/vercel.svg);--brand:#000000" aria-hidden="true"></span><span>Vercel</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/railway.svg);--brand:#0B0D0E" aria-hidden="true"></span><span>Railway</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/render.svg);--brand:#000000" aria-hidden="true"></span><span>Render</span></li><li class="logo-chip"><span class="logo-mark" style="--icon:url(/assets/logos/electron.svg);--brand:#47848F" aria-hidden="true"></span><span>Electron</span></li></ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -636,14 +653,15 @@
               </p>
             </div>
             <div class="copy-area">
-              <button type="button" class="copy-email" hidden>
-                Copy email
-                <svg class="inline-icon" viewBox="0 0 24 24" width="16" height="16"
-                  fill="none" stroke="currentColor" stroke-width="1.5"
-                  aria-hidden="true" focusable="false">
-                  <rect x="8" y="8" width="12" height="12" rx="2" />
-                  <path d="M16 8V4H4v12h4" />
-                </svg></button
+              <button type="button" class="copy-email eye-button" aria-label="Copy email address" hidden>
+                <span class="eye-label" aria-hidden="true"
+                  ><span class="eye-label-idle">Copy email</span
+                  ><span class="eye-label-done">Copied</span></span
+                ><span class="eyes" aria-hidden="true"
+                  ><span class="eye"><span class="pupil"></span></span
+                  ><span class="eye"><span class="pupil"></span></span
+                ></span
+              ></button
               ><span
                 id="copy-status"
                 class="mono"
@@ -656,7 +674,7 @@
       </section>
     </main>
     <footer class="site-footer wrap">
-      <a class="wordmark" href="#home">rayyan<span class="accent">.</span></a>
+      <a class="footer-avatar" href="#home" aria-label="Muhammad Rayyan, home"><img src="assets/favicon.svg" alt="" width="44" height="44" /></a>
       <p class="mono">© <span id="year">2026</span> Muhammad Rayyan</p>
       <div>
         <a
