@@ -1,11 +1,12 @@
-"""Download the pinned browser libraries used by the arcade into assets/vendor/.
+"""Download the pinned browser libraries used by the arcade and the homepage into assets/vendor/.
 
 Uses only the standard library. Run from the repository root:
 
     python scripts/vendor_libs.py
 
 To upgrade, change a version below, run the script, and update the import map
-paths in the arcade pages and the worker import in engine.worker.js.
+paths in the arcade pages, the worker import in engine.worker.js, and the
+Matter.js path in assets/gravity.js.
 """
 
 import io
@@ -19,6 +20,7 @@ VENDOR = ROOT / "assets" / "vendor"
 
 THREE = "0.186.0"
 CHESS = "1.4.0"
+MATTER = "0.19.0"
 
 # (package, version, {path inside the package tarball: path inside the vendor folder})
 PACKAGES = [
@@ -38,6 +40,14 @@ PACKAGES = [
         CHESS,
         {
             "dist/esm/chess.js": "chess.js",
+            "LICENSE": "LICENSE",
+        },
+    ),
+    (
+        "matter-js",
+        MATTER,
+        {
+            "build/matter.min.js": "matter.min.js",
             "LICENSE": "LICENSE",
         },
     ),

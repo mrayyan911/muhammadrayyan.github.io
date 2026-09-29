@@ -47,16 +47,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/portfolio.css" />
-    <link rel="stylesheet" href="assets/cohesion.css?v=17" />
+    <link rel="stylesheet" href="assets/cohesion.css?v=19" />
     <link rel="stylesheet" href="assets/liquid-metal-button.css?v=3" />
     <link rel="stylesheet" href="assets/eye-button.css?v=3" />
     <link rel="stylesheet" href="assets/navbar.css?v=3" />
     <script src="assets/portfolio.js?v=2" defer></script>
     <script src="assets/motion.js?v=2" defer></script>
-    <script src="assets/liquid-metal-button.js?v=3" defer></script>
+    <script src="assets/liquid-metal-button.js?v=4" defer></script>
     <script src="assets/eye-button.js?v=4" defer></script>
     <script src="assets/navbar.js?v=3" defer></script>
     <script src="assets/favicon.js" defer></script>
+    <script src="assets/gravity.js?v=2" defer></script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -593,13 +594,6 @@
                 <li>What is Data Science? <span>IBM / Coursera</span></li>
               </ul>
             </details>
-            <a
-              id="resume"
-              class="text-link"
-              href="MuhammadRayyan-Resume.pdf"
-              download="Muhammad-Rayyan-Resume.pdf"
-              >Download my résumé <span class="mono">PDF</span></a
-            >
           </div>
         </div>
       </section>
@@ -653,6 +647,7 @@
               </p>
             </div>
             <div class="copy-area">
+              <button type="button" class="gravity-button" hidden><span class="gravity-face">Don&#8217;t press this</span></button>
               <button type="button" class="copy-email eye-button" aria-label="Copy email address" hidden>
                 <span class="eye-label" aria-hidden="true"
                   ><span class="eye-label-idle">Copy email</span
