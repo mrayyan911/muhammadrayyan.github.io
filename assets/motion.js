@@ -64,5 +64,34 @@
   document.addEventListener('visibilitychange', () => {
     document.body.classList.toggle('motion-hidden', document.hidden);
   });
+
+  // Scroll-linked depth: each shape drifts and spins at its own rate, and the name slides sideways.
+  // Uses the independent `translate`/`rotate` properties so the idle float keyframes keep running.
+  const layers = [
+    ['.shape-cone', -0.22, 0.07], ['.shape-orb', 0.12, -0.05], ['.shape-capsule', 0.3, -0.09],
+    ['.shape-donut', -0.32, 0.1], ['.shape-cube', 0.2, 0.08], ['.shape-plus', -0.16, -0.12],
+  ].map(([selector, drift, spin]) => ({ element: hero.querySelector(selector), drift, spin })).filter(l => l.element);
+  const marquee = hero.querySelector('.hero-marquee');
+  let target = 0, current = 0, frame = 0;
+
+  function paint() {
+    frame = 0;
+    current += (target - current) * 0.12;
+    for (const { element, drift, spin } of layers) {
+      element.style.translate = `0 ${(current * drift).toFixed(1)}px`;
+      element.style.rotate = `${(current * spin).toFixed(2)}deg`;
+    }
+    if (marquee) marquee.style.translate = `${(current * -0.35).toFixed(1)}px 0`;
+    if (Math.abs(target - current) > 0.1) frame = requestAnimationFrame(paint);
+  }
+  function onScroll() {
+    target = document.body.classList.contains('motion-paused') ? 0 : Math.min(scrollY, 1000);
+    if (!frame) frame = requestAnimationFrame(paint);
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  toggle.addEventListener('click', onScroll);
+  preference.addEventListener('change', onScroll);
+  onScroll();
   sync();
+  onScroll();
 })();
