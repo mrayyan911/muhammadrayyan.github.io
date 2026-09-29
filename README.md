@@ -16,10 +16,11 @@ A personal portfolio for a full-stack developer based in Lahore. Selected projec
 - A clickable SVG envelope that requests a draft in the visitor's email app, plus a Gmail compose link and a copy-email button.
 - A transparent pixel-avatar favicon that blinks twice on arrival and when returning to the tab.
 - Floating geometric shapes, a looping name marquee, a portrait flip-up entrance, and scroll reveals. A pause control and reduced-motion preferences stop animation.
+- A “Don’t press this” button beside Copy email that drops the whole homepage into a Matter.js physics pile; moving the pointer scatters it, and “Put it back” or Escape restores the page. Hidden when reduced motion is on.
 - Keyboard focus styles, a skip link, reduced-motion support, and print styles.
 - An [arcade](https://www.rayyandev.tech/arcade/) with two Three.js games: a Rubik’s cube with a scramble button, timer, and best time, and chess against a bot with three levels.
 
-The site has no framework, package manager, build step, backend, or environment variables. The arcade loads pinned copies of three.js and chess.js from `assets/vendor/` through import maps. Navigation, project details, résumé links, and email links work without JavaScript.
+The site has no framework, package manager, build step, backend, or environment variables. The arcade loads pinned copies of three.js and chess.js from `assets/vendor/` through import maps, and the homepage loads a pinned Matter.js from there on the first press of that button. Navigation, project details, résumé links, and email links work without JavaScript.
 
 ## Run locally
 
@@ -48,13 +49,14 @@ Open [localhost:8000](http://localhost:8000). Edit the files and refresh the bro
 | [assets/portfolio.css](assets/portfolio.css) | Design tokens, layouts, interaction states, and responsive styles |
 | [assets/motion.js](assets/motion.js) | Scroll entrances, animation pause control, and reduced-motion preferences |
 | [assets/portfolio.js](assets/portfolio.js) | Copyright year, email copying, and service-worker registration |
+| [assets/gravity.js](assets/gravity.js) | Footer button that drops the homepage into a physics pile and puts it back |
 | [assets/favicon.js](assets/favicon.js) | Favicon frame switching and motion preferences |
 | [assets/](assets/) | Portraits, project images, and generated icons |
 | [scripts/build_favicon.py](scripts/build_favicon.py) | Pixel-avatar source and icon generator |
 | [scripts/build_resume.py](scripts/build_resume.py) | Résumé content and PDF generator |
 | [arcade/](arcade/) | Arcade index and the cube and chess pages |
 | [assets/arcade/](assets/arcade/) | Arcade styles, shared 3D stage, game logic, views, and the chess bot |
-| [assets/vendor/](assets/vendor/) | Pinned three.js and chess.js builds, with their licenses |
+| [assets/vendor/](assets/vendor/) | Pinned three.js, chess.js, and Matter.js builds, with their licenses |
 | [scripts/vendor_libs.py](scripts/vendor_libs.py) | Downloads the pinned libraries into `assets/vendor/` |
 | [tests/](tests/) | Node tests for the cube logic and the chess bot |
 | [sw.js](sw.js) | Image and library caching, and cache-version cleanup |
