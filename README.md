@@ -4,7 +4,7 @@
 
 # Muhammad Rayyan's portfolio
 
-A personal portfolio for a full-stack developer based in Lahore. Selected projects, work experience, technical skills, a downloadable résumé, and an arcade of two 3D games, built with HTML, CSS, and vanilla JavaScript.
+A personal portfolio for a remote full-stack developer. Selected projects, work experience, technical skills, a downloadable résumé, and an arcade of two 3D games, built with HTML, CSS, and vanilla JavaScript.
 
 [Visit the website](https://www.rayyandev.tech/) · [View the résumé](MuhammadRayyan-Resume.pdf)
 

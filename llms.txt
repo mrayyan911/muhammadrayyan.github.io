@@ -1,6 +1,6 @@
 # Muhammad Rayyan
 
-> Full-stack developer based in Lahore, Pakistan. Builds web applications, developer tools, and AI systems with TypeScript, Next.js, Python, and PostgreSQL.
+> Remote full-stack developer. Builds web applications, developer tools, and AI systems with TypeScript, React, Next.js, Node.js, Python, and PostgreSQL. Open to remote full-stack roles and freelance projects worldwide (UTC+5).
 
 This is Muhammad Rayyan's personal portfolio. It describes his work, experience, skills, and education. He works at Journal Post Group and previously interned at Voliom. Project descriptions distinguish current professional work from personal projects. Contact: rayyan.scale@gmail.com.
 
@@ -11,7 +11,7 @@ This is Muhammad Rayyan's personal portfolio. It describes his work, experience,
 - [Experience](https://www.rayyandev.tech/#experience): Full-stack development at Journal Post Group and an AI/ML internship at Voliom.
 - [Resume](https://www.rayyandev.tech/MuhammadRayyan-Resume.pdf): Downloadable professional resume.
 
-- [Development services](https://www.rayyandev.tech/services/): Web applications, backend integrations, and AI workflows, with relevant project examples.
+- [Development services](https://www.rayyandev.tech/services/): Remote and freelance work on web applications, backend integrations, and AI workflows, with project examples and answers to common hiring questions.
 - [Imagenix case study](https://www.rayyandev.tech/projects/imagenix/): A Next.js, NestJS, and FastAPI image-dataset workflow.
 
 ## Arcade
