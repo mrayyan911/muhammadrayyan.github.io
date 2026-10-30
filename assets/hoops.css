@@ -1,0 +1,45 @@
+.hoops {
+  --u: clamp(112px, 26vw, 210px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: max(640px, calc(100svh - 96px));
+  padding-top: 96px;
+  text-align: center;
+  outline-offset: -4px;
+}
+.hoops:focus-visible { outline: 2px solid var(--accent); border-radius: 28px; }
+.hoops canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
+.hoops > *:not(canvas) { position: relative; z-index: 2; }
+.arcade-eyebrow { display: inline-block; margin-bottom: 20px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 30px; font: 12px var(--mono); color: var(--muted); }
+.hoops-digits { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 0.08); }
+.hoops-digits > span { font-size: calc(var(--u) * 1.12); font-weight: 850; line-height: 0.8; letter-spacing: -0.06em; color: var(--ink); padding-bottom: 0.06em; }
+.hoops-badge { width: var(--u); padding: 6px; border-radius: calc(var(--u) * 0.24); background: rgba(18, 20, 26, 0.045); border: 1px solid var(--line); }
+.hoops-badge > div { border-radius: calc(var(--u) * 0.2); background: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14); aspect-ratio: 1; }
+.hoops-badge svg { display: block; width: 100%; height: 100%; }
+.hoops h1 { margin-top: 30px; font-size: clamp(34px, 5.4vw, 64px); }
+.hoops-copy { max-width: 30em; margin-top: 14px; color: var(--muted); }
+.hoops-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px; }
+.hoops-actions .liquid-button { margin: 0; }
+.hoops-again {
+  font: inherit; font-size: 15px; padding: 0 22px; min-height: 44px; border-radius: 999px; cursor: pointer;
+  color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1), background-color 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.hoops-again:hover { transform: translateY(-2px); background: #fff; }
+.hoops-again:active { transform: translateY(1px) scale(0.988); }
+.hoops-again:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.hoops-again[hidden] { display: none; }
+.hoops-field { flex: 1; min-height: 120px; }
+.hoops > .hoops-ball { position: absolute; left: 0; top: 0; z-index: 4; border-radius: 50%; touch-action: none; cursor: grab; }
+.hoops-ball:active { cursor: grabbing; }
+.hoops > .hoops-bar { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 22px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; text-align: left; pointer-events: none; }
+.hoops-bar p { margin: 0; }
+.hoops-count { color: var(--ink); white-space: nowrap; }
+.hoops-status { color: var(--muted); text-align: right; max-width: 28em; }
+@media (max-width: 640px) {
+  .hoops { padding-top: 104px; }
+  .hoops > .hoops-bar { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .hoops-status { text-align: left; }
+}

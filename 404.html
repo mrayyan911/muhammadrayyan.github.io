@@ -13,15 +13,13 @@
     <link rel="stylesheet" href="/assets/cohesion.css?v=9" />
     <link rel="stylesheet" href="/assets/liquid-metal-button.css?v=3" />
     <link rel="stylesheet" href="/assets/navbar.css?v=3" />
-    <style>
-      .nf { min-height: 70vh; padding-top: 150px; }
-      .nf p { margin-top: 18px; }
-      .nf .liquid-button { margin-top: 12px; }
-    </style>
+    <link rel="stylesheet" href="/assets/hoops.css?v=3" />
     <script src="/assets/portfolio.js" defer></script>
     <script src="/assets/liquid-metal-button.js?v=4" defer></script>
     <script src="/assets/navbar.js?v=3" defer></script>
     <script src="/assets/favicon.js" defer></script>
+    <script src="/assets/vendor/matter-js@0.19.0/matter.min.js" defer></script>
+    <script src="/assets/hoops.js?v=2" defer></script>
   </head>
   <body class="cohesion">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -39,11 +37,32 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation" hidden><span></span><span></span></button>
     </header>
     <main id="main">
-      <section class="hero nf wrap" aria-labelledby="nf-title">
+      <section class="hoops wrap" data-cursor="aim" role="application" tabindex="0" aria-label="Drag the ball back and aim along the dotted line, then let go. Make 3 of 5 to win. Use the arrow keys to aim and Enter to shoot.">
+        <canvas aria-hidden="true"></canvas>
         <p class="arcade-eyebrow">404</p>
-        <h1 id="nf-title">That page <em>doesn&#8217;t exist.</em></h1>
-        <p>The link may be old or mistyped. Try the portfolio, the services page, or the arcade.</p>
-        <p><a class="liquid-button" href="/">Back to portfolio</a></p>
+        <div class="hoops-digits" aria-hidden="true">
+          <span>4</span>
+          <div class="hoops-badge"><div>
+            <svg viewBox="0 0 200 200" focusable="false">
+              <rect x="28" y="22" width="144" height="86" rx="9" fill="#a3a9b5" />
+              <rect x="74" y="52" width="52" height="40" rx="3" fill="none" stroke="#12141a" stroke-opacity=".55" stroke-width="4" />
+              <ellipse cx="100" cy="108" rx="70" ry="10" fill="none" stroke="#e8571f" stroke-width="5" />
+            </svg>
+          </div></div>
+          <span>4</span>
+        </div>
+        <h1 id="nf-title">Oops! Airball.</h1>
+        <p class="hoops-copy">We couldn&#8217;t find the page you&#8217;re looking for.<br />While you&#8217;re here, why not take a shot?</p>
+        <div class="hoops-actions">
+          <a class="liquid-button" href="/">Back to portfolio</a>
+          <button class="hoops-again" type="button" hidden>Play again</button>
+        </div>
+        <div class="hoops-field"></div>
+        <div class="hoops-ball"></div>
+        <div class="hoops-bar">
+          <p class="mono hoops-count">05 SHOTS LEFT</p>
+          <p class="mono hoops-status" role="status"></p>
+        </div>
       </section>
     </main>
     <footer class="site-footer wrap">
