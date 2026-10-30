@@ -279,18 +279,18 @@
 /* "Don't press this": an arcade key above Copy email that drops the page into a pile (assets/gravity.js).
    The red face sits on a darker base; pressing sinks the face onto the base and sweeps a shine across it. */
 .gravity-button {
-  --depth: 6px;
+  --depth: 6px; --key-top: #ef6048; --key-bottom: #c8301b; --key-base: #7a1c10;
   position: relative; display: inline-block; padding: 0 0 var(--depth); margin-bottom: 10px; border: 0; border-radius: 999px;
   background: none; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap;
 }
 .gravity-button[hidden] { display: none; }
 .gravity-button::before {
-  content: ''; position: absolute; inset: var(--depth) 0 0; border-radius: inherit; background: #7a1c10;
+  content: ''; position: absolute; inset: var(--depth) 0 0; border-radius: inherit; background: var(--key-base);
   box-shadow: 0 0 0 2px var(--ink), 0 14px 20px -10px #1e2a42a6;
 }
 .gravity-face {
   position: relative; display: block; overflow: hidden; padding: 13px 24px; border-radius: inherit;
-  background: linear-gradient(180deg, #d9533a, var(--accent));
+  background: linear-gradient(180deg, var(--key-top), var(--key-bottom));
   box-shadow: 0 0 0 2px var(--ink), inset 0 2px 0 #ffffff4d, inset 0 -3px 0 #00000026;
   transition: transform .14s cubic-bezier(.3, 1.5, .5, 1);
 }
@@ -302,7 +302,7 @@
 .gravity-button:hover .gravity-face { transform: translateY(-2px); }
 .gravity-button:active .gravity-face { transform: translateY(calc(var(--depth) - 1px)); transition-duration: .06s; }
 .gravity-button[data-shine] .gravity-face::after { animation: gravity-shine .55s cubic-bezier(.2, .7, .3, 1); }
-.gravity-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.gravity-button:focus-visible { outline: 2px solid var(--key-bottom); outline-offset: 5px; }
 @keyframes gravity-shine { to { transform: translateX(380%) skewX(-22deg); } }
 .gravity-restore {
   position: fixed; z-index: 2000; top: calc(18px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%);

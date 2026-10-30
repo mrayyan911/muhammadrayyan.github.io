@@ -859,6 +859,10 @@ details[open] summary span {
   position: relative;
 }
 .mail-note {
+  --note-back: #1b4d41;
+  --note-front: var(--accent);
+  --note-flap: #34806d;
+  --note-ink: #174238;
   position: absolute;
   right: 0;
   bottom: 0;
