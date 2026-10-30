@@ -59,7 +59,7 @@ function coordinatesTexture(flipped) {
   ctx.fillRect(0, 0, size, size);
   const unit = size / 9;
   ctx.fillStyle = "#6a6352";
-  ctx.font = `500 ${unit * 0.24}px "DM Mono", Consolas, monospace`;
+  ctx.font = `500 ${unit * 0.24}px "Geist Mono", Consolas, monospace`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   const text = (label, x, y) => {

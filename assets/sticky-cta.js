@@ -1,6 +1,6 @@
 (() => {
   const cta = document.querySelector('.sticky-cta');
-  const hero = document.querySelector('.content-actions');
+  const hero = document.querySelector('.actions');
   const ends = [document.querySelector('.contact-section'), document.querySelector('.site-footer')];
   if (!cta || !hero || !('IntersectionObserver' in window)) return;
   const hidden = { hero: true, ends: false };

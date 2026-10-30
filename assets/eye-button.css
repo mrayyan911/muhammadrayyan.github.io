@@ -21,7 +21,7 @@
 .cohesion .copy-email.eye-button[hidden] { display: none; }
 .cohesion .copy-email.eye-button:hover { background: #000; color: #fff; transform: translateY(-2px); }
 .cohesion .copy-email.eye-button:active { transform: translateY(1px); }
-.cohesion .copy-email.eye-button:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+.cohesion .copy-email.eye-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .eye-button:hover .pupil { --pupil: 15px; }
 .eye-button:active .pupil { --pupil: 17px; }
 

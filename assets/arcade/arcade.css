@@ -213,7 +213,7 @@
   outline: none;
 }
 .stage canvas:focus-visible {
-  box-shadow: inset 0 0 0 2px var(--red);
+  box-shadow: inset 0 0 0 2px var(--accent);
 }
 .stage-message {
   position: absolute;
@@ -221,7 +221,7 @@
   background: var(--paper);
   padding: 18px 20px;
   font-size: 14px;
-  box-shadow: 0 10px 24px #25251f1f;
+  box-shadow: 0 10px 24px #1e2a421f;
   max-width: 420px;
 }
 .stage-message p + p,
@@ -273,7 +273,7 @@
   font-variant-numeric: tabular-nums;
 }
 .stats dd.is-highlight {
-  color: var(--red);
+  color: var(--accent);
 }
 .button-row {
   display: flex;
@@ -291,8 +291,8 @@
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .button:hover:not(:disabled) {
-  border-color: var(--red);
-  color: var(--red);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .button-primary {
   background: var(--ink);
@@ -300,8 +300,8 @@
   flex: 1 1 100%;
 }
 .button-primary:hover:not(:disabled) {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--accent);
+  border-color: var(--accent);
   color: var(--paper);
 }
 .button:disabled {
@@ -317,7 +317,7 @@
   flex: 1 1 0;
 }
 .confirm {
-  border-left: 2px solid var(--red);
+  border-left: 2px solid var(--accent);
   padding: 4px 0 4px 16px;
   font-size: 14px;
 }
@@ -365,8 +365,8 @@
   font-size: 13px;
 }
 .move-pad button:hover:not(:disabled) {
-  border-color: var(--red);
-  color: var(--red);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .move-pad button:disabled {
   opacity: 0.38;
@@ -401,7 +401,7 @@ kbd {
 .toggle input {
   width: 18px;
   height: 18px;
-  accent-color: var(--red);
+  accent-color: var(--accent);
   margin: 0;
 }
 .toggle + .toggle {
@@ -450,7 +450,7 @@ kbd {
   color: var(--paper);
 }
 .segmented input:focus-visible + span {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 .choice-group + .choice-group {
@@ -473,13 +473,13 @@ kbd {
   color: var(--ink);
 }
 .move-input input:focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 .move-error {
   margin-top: 8px;
   font-size: 12px;
-  color: var(--red);
+  color: var(--accent);
   min-height: 1.4em;
 }
 .move-list {
@@ -496,14 +496,14 @@ kbd {
   display: grid;
   grid-template-columns: 34px 1fr 1fr;
   padding-block: 4px;
-  border-bottom: 1px solid #cccac180;
+  border-bottom: 1px solid var(--line);
 }
 .move-list .index-number {
   color: var(--muted);
   font-size: 12px;
 }
 .move-list .is-last {
-  color: var(--red);
+  color: var(--accent);
 }
 .move-list-empty {
   font-size: 13px;
@@ -534,7 +534,7 @@ kbd {
   transform: translate(-50%, -50%);
   background: var(--paper);
   padding: 18px;
-  box-shadow: 0 14px 30px #25251f2e;
+  box-shadow: 0 14px 30px #1e2a422e;
 }
 .promotion p {
   font-size: 13px;
@@ -551,7 +551,7 @@ kbd {
   max-width: 360px;
   background: var(--paper);
   padding: 20px 22px;
-  box-shadow: 0 14px 30px #25251f2e;
+  box-shadow: 0 14px 30px #1e2a422e;
 }
 .game-over h2 {
   font-size: 34px;
@@ -568,10 +568,10 @@ dialog.new-game {
   width: min(92vw, 380px);
   background: var(--paper);
   color: var(--ink);
-  box-shadow: 0 20px 50px #25251f40;
+  box-shadow: 0 20px 50px #1e2a4240;
 }
 dialog.new-game::backdrop {
-  background: #25251f66;
+  background: #1e2a4266;
 }
 dialog.new-game h2 {
   font-size: 34px;
@@ -588,7 +588,7 @@ dialog.new-game .button-row {
   height: 6px;
   margin-left: 8px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--accent);
   vertical-align: middle;
   animation: pulse 0.9s ease-in-out infinite alternate;
 }
@@ -686,7 +686,6 @@ dialog.new-game .button-row {
 /* ── Homepage cohesion: rounded panels, pill controls, liquid-metal actions ── */
 .cohesion .arcade-hero { border-top: 0; text-align: center; padding-top: 44px; }
 .cohesion .arcade-hero h1 { margin-top: 0; font-size: clamp(42px, 5.6vw, 76px); font-weight: 600; letter-spacing: -.05em; line-height: 1.08; }
-.cohesion .arcade-hero h1 em { font-size: 1.12em; }
 .arcade-eyebrow { display: inline-block; margin-bottom: 20px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 30px; font-size: 12px; color: var(--muted); }
 .cohesion .arcade-intro { margin-top: 16px; padding-bottom: 0; border-bottom: 0; font-size: 16px; }
 .cohesion .arcade-games { padding-top: 34px; }
@@ -696,7 +695,7 @@ dialog.new-game .button-row {
 .cohesion .game-card-title a { text-decoration: none; }
 .play-pill { text-transform: none; letter-spacing: -.01em; padding: 12px 26px; font-family: var(--sans); font-size: 14px; pointer-events: none; }
 .game-visual:is(:hover, :focus-visible) .play-pill { transform: translateY(-2px); }
-.game-visual:focus-visible { outline: 2px solid var(--red); outline-offset: 5px; }
+.game-visual:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 
 /* Game pages */
 .cohesion .back-link { font-size: 13px; }
@@ -723,7 +722,7 @@ dialog.new-game .button-row {
 .cohesion .button:active:not(:disabled) { transform: translateY(1px); }
 .cohesion .button-primary { background: var(--ink); color: #fff; box-shadow: 0 10px 20px -10px #171719a6; }
 .cohesion .button-primary:hover:not(:disabled) { background: #000; color: #fff; box-shadow: 0 12px 22px -10px #171719c0; }
-.cohesion .button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.cohesion .button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .cohesion .segmented { border: 0; padding: 4px; gap: 2px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #dcdce3; }
 .cohesion .segmented span { border-radius: 999px; min-height: 36px; }
 .cohesion .segmented label + label span { border-left: 0; }

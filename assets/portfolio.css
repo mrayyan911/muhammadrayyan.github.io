@@ -1,21 +1,19 @@
-@font-face { font-family: "DM Sans"; font-style: normal; font-weight: 400 900; font-display: swap; src: url(fonts/dm-sans-var.woff2) format("woff2"); }
-@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/dm-mono-400.woff2) format("woff2"); }
-@font-face { font-family: "DM Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/dm-mono-500.woff2) format("woff2"); }
-@font-face { font-family: "Space Grotesk"; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/space-grotesk-500.woff2) format("woff2"); }
-@font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/instrument-serif.woff2) format("woff2"); }
-@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url(fonts/instrument-serif-italic.woff2) format("woff2"); }
-/* A quiet paper surface, oversized type, and one vermilion accent. */
+@font-face { font-family: "Geist"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/geist-var.woff2) format("woff2"); }
+@font-face { font-family: "Geist Mono"; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/geist-mono-var.woff2) format("woff2"); }
+/* A cool off-white surface, Geist throughout, and one green accent. */
 :root {
-  --paper: #f3f0e9;
-  --ink: #25251f;
-  --muted: #68685f;
-  --line: #cccac1;
-  --red: #b93422;
-  --serif: "Instrument Serif", Georgia, serif;
-  --sans: "DM Sans", Arial, sans-serif;
-  --numerals: "Space Grotesk", "DM Sans", sans-serif;
-  --mono: "DM Mono", Consolas, monospace;
+  --paper: #f5f6f8;
+  --panel: #fbfcfd;
+  --ink: #12141a;
+  --muted: #636874;
+  --dim: #656b78;
+  --line: rgba(18, 20, 26, 0.13);
+  --tray: rgba(18, 20, 26, 0.045);
+  --accent: #25695a;
+  --sans: "Geist", system-ui, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Consolas, monospace;
   --gutter: clamp(22px, 5.2vw, 90px);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
 }
 * {
   box-sizing: border-box;
@@ -34,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  background: var(--red);
+  background: var(--accent);
   color: var(--paper);
 }
 a {
@@ -48,13 +46,13 @@ button {
 button,
 a,
 summary {
-  -webkit-tap-highlight-color: #b9342220;
+  -webkit-tap-highlight-color: #25695a20;
   touch-action: manipulation;
 }
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
 }
 img {
@@ -71,8 +69,10 @@ h4 {
   margin: 0;
 }
 em {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-style: normal;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--dim);
 }
 h1,
 h2,
@@ -84,9 +84,6 @@ h2 {
   font-size: clamp(48px, 6.5vw, 92px);
   line-height: 0.98;
   letter-spacing: -0.055em;
-}
-h2 em {
-  letter-spacing: -0.035em;
 }
 h3 {
   font-size: 30px;
@@ -111,13 +108,13 @@ h3 {
   font-size: 11px;
 }
 .index-number {
-  font-family: var(--numerals);
+  font-family: var(--sans);
   font-weight: 500;
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: 0;
 }
 .accent {
-  color: var(--red);
+  color: var(--accent);
 }
 .eyebrow {
   text-transform: uppercase;
@@ -148,8 +145,8 @@ h3 {
   font-weight: 550;
 }
 .text-link:hover {
-  color: var(--red);
-  border-color: var(--red);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 .inline-icon {
   vertical-align: middle;
@@ -220,7 +217,7 @@ h3 {
   padding-block: 12px;
 }
 .site-header nav a:hover {
-  color: var(--red);
+  color: var(--accent);
 }
 .nav-count {
   vertical-align: super;
@@ -240,7 +237,7 @@ h3 {
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  background: var(--red);
+  background: var(--accent);
   margin-right: 8px;
   vertical-align: middle;
 }
@@ -259,9 +256,9 @@ h3 {
 }
 h1 {
   font-size: clamp(70px, 11.7vw, 176px);
-  line-height: 0.83;
-  letter-spacing: -0.082em;
-  font-weight: 650;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  font-weight: 600;
 }
 .portrait-note {
   position: absolute;
@@ -270,14 +267,14 @@ h1 {
   width: clamp(175px, 20vw, 265px);
   transform: rotate(6deg);
   z-index: 2;
-  background: #e5dfd2;
+  background: #e6e9ee;
   padding: 10px;
-  box-shadow: 0 8px 22px #25251f13;
+  box-shadow: 0 8px 22px #1e2a4213;
 }
 .portrait-image {
   overflow: hidden;
   aspect-ratio: 4/4.3;
-  background: #77705e;
+  background: #6b7280;
 }
 .portrait-image img {
   height: 100%;
@@ -304,7 +301,7 @@ h1 {
   position: absolute;
   right: 0;
   bottom: 20px;
-  color: var(--red);
+  color: var(--accent);
   font-size: 72px;
   line-height: 1;
   transform: rotate(-10deg);
@@ -321,9 +318,6 @@ h1 {
   font-size: clamp(25px, 3.3vw, 45px);
   line-height: 1.18;
   letter-spacing: -0.035em;
-}
-.hero-statement em {
-  font-size: 1.17em;
 }
 .hero-intro {
   max-width: 390px;
@@ -389,24 +383,24 @@ h1 {
   text-transform: uppercase;
 }
 .journal-visual {
-  background: #ded9ce;
-  color: #3d3b34;
+  background: #e4e7ec;
+  color: #2d3340;
   padding: 25px 35px;
 }
 .journal-screenshot {
   width: 100%;
   height: auto;
   margin-block: 28px;
-  box-shadow: 0 10px 30px #3530221a;
+  box-shadow: 0 10px 30px #1e2a421a;
 }
 .usage-visual .visual-bottomline {
   justify-content: flex-end;
 }
 .journal-preview {
-  background: #faf8f2;
+  background: #fbfcfd;
   width: 86%;
   margin: 40px auto;
-  box-shadow: 0 10px 30px #3530221a;
+  box-shadow: 0 10px 30px #1e2a421a;
   padding: 26px 35px 32px;
   transform: rotate(-1.4deg);
   transition: transform 0.35s;
@@ -421,14 +415,13 @@ h1 {
   gap: 15px;
 }
 .journal-masthead strong {
-  font-family: Georgia, serif;
   font-size: clamp(28px, 4vw, 58px);
   font-weight: 700;
   letter-spacing: -0.07em;
   line-height: 1;
 }
 .journal-masthead strong > span {
-  color: var(--red);
+  color: var(--accent);
 }
 .journal-masthead > .mono {
   font-size: 7px;
@@ -443,16 +436,13 @@ h1 {
 .journal-cover-label {
   font-size: 8px;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--accent);
 }
 .journal-cover > p {
   font-size: clamp(32px, 5.6vw, 82px);
   letter-spacing: -0.065em;
   line-height: 1.03;
   margin: 18px 0 30px;
-}
-.journal-cover > p em {
-  font-size: 1.16em;
 }
 .journal-columns {
   display: grid;
@@ -495,7 +485,7 @@ h1 {
   align-items: center;
 }
 .project-info h3 a:hover {
-  color: var(--red);
+  color: var(--accent);
 }
 .project-info > div > p:not(.project-type) {
   font-size: 14px;
@@ -522,7 +512,7 @@ details summary::-webkit-details-marker {
   display: none;
 }
 details summary:hover {
-  color: var(--red);
+  color: var(--accent);
 }
 details summary span {
   font-size: 20px;
@@ -601,7 +591,7 @@ details[open] summary span {
   width: 90%;
   max-width: 340px;
   margin: 28px auto 18px;
-  box-shadow: 0 14px 30px #25251f26;
+  box-shadow: 0 14px 30px #1e2a4226;
   transform: rotate(-5deg);
   transition: transform 0.3s;
 }
@@ -658,13 +648,13 @@ details[open] summary span {
   margin-left: 60px;
 }
 .imagenix-visual {
-  background: #dfdce6;
-  color: #37303f;
+  background: #e4e7ec;
+  color: #2d3340;
 }
 .browser-frame {
   width: 96%;
   margin: 40px auto 35px;
-  box-shadow: 0 15px 30px #33304b26;
+  box-shadow: 0 15px 30px #1e2a4226;
   transform: rotate(-3deg);
   transition: transform 0.35s;
 }
@@ -674,7 +664,7 @@ details[open] summary span {
 .browser-bar {
   display: flex;
   justify-content: space-between;
-  background: #f5f4f7;
+  background: #f5f6f8;
   font-family: var(--mono);
   font-size: 7px;
   padding: 8px 10px;
@@ -682,7 +672,7 @@ details[open] summary span {
 }
 .browser-bar > span:first-child {
   letter-spacing: 3px;
-  color: #9d99a8;
+  color: #8a909c;
 }
 .browser-frame img {
   width: 100%;
@@ -692,12 +682,12 @@ details[open] summary span {
 }
 /* Experience, skills, and the person behind the work */
 .experience-section {
-  background: #e9e6de;
+  background: #eceef2;
 }
 .experience-row {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  border-top: 1px solid #bfbdb5;
+  border-top: 1px solid var(--line);
   padding-top: 38px;
   gap: 50px;
 }
@@ -722,7 +712,7 @@ details[open] summary span {
 .experience-copy > p,
 .experience-copy li {
   font-size: 15px;
-  color: #606158;
+  color: var(--muted);
   line-height: 1.8;
 }
 .experience-copy ul {
@@ -734,7 +724,7 @@ details[open] summary span {
   margin-block: 10px;
 }
 .experience-copy li::marker {
-  color: var(--red);
+  color: var(--accent);
 }
 .skill-row {
   display: grid;
@@ -749,7 +739,7 @@ details[open] summary span {
 }
 .skill-index {
   font-size: 13px;
-  color: var(--red);
+  color: var(--accent);
 }
 .skill-row h3 {
   font-size: 24px;
@@ -805,7 +795,7 @@ details[open] summary span {
   margin-top: 35px;
 }
 .education-block > span {
-  color: var(--red);
+  color: var(--accent);
   font-size: 9px;
   text-transform: uppercase;
 }
@@ -843,7 +833,7 @@ details[open] summary span {
 }
 /* Contact */
 .contact-section {
-  background: var(--red);
+  background: var(--accent);
   color: var(--paper);
   padding-block: 35px 55px;
 }
@@ -864,10 +854,6 @@ details[open] summary span {
   line-height: 1.12;
   letter-spacing: -0.06em;
   margin-block: 60px 45px;
-}
-.contact-section h2 em {
-  font-size: 1.13em;
-  letter-spacing: -0.03em;
 }
 .contact-heading {
   position: relative;
@@ -977,7 +963,7 @@ details[open] summary span {
 }
 .copy-email:hover {
   background: var(--paper);
-  color: var(--red);
+  color: var(--accent);
 }
 .copy-email:focus-visible,
 .contact-section a:focus-visible {
@@ -1011,7 +997,7 @@ details[open] summary span {
   font-size: 11px;
 }
 .site-footer a:hover {
-  color: var(--red);
+  color: var(--accent);
 }
 @media (min-width: 1500px) {
   .hero-composition {
@@ -1116,8 +1102,8 @@ details[open] summary span {
   }
   h1 {
     font-size: 15.4vw;
-    line-height: 0.88;
-    letter-spacing: -0.075em;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
   }
   .hero-name .eyebrow {
     font-size: 11px;

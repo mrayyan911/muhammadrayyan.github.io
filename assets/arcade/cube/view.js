@@ -61,7 +61,7 @@ function letterAtlas() {
   const ctx = canvas.getContext("2d");
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.font = `500 ${cell * 0.46}px "DM Mono", Consolas, monospace`;
+  ctx.font = `500 ${cell * 0.46}px "Geist Mono", Consolas, monospace`;
   LETTERS.forEach((letter, i) => {
     ctx.fillStyle = DARK_FACES.has(letter) ? "#f3f0e9" : "#25251f";
     ctx.fillText(letter, cell * (i + 0.5), cell * 0.54);
