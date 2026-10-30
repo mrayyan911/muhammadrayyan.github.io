@@ -168,3 +168,86 @@
 @media (max-width: 700px) {
   .faq-row { grid-template-columns: 1fr; gap: 10px; padding-block: 24px; }
 }
+/* Services rows: one real visual per service, in the left column under the stack line. */
+.cohesion .service-visual { display: block; margin-top: 30px; padding: 18px; border-radius: 24px; background: var(--tile, #f1edff); }
+.cohesion .service-visual img { display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 12px 24px -8px #17171930; }
+.cohesion a.service-visual { transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.cohesion a.service-visual:hover { transform: translateY(-4px); }
+.cohesion .service-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; padding: 26px 22px; }
+.service-stack span { display: flex; align-items: center; gap: 10px; font: 12px/1.3 var(--mono); color: #4d4638; }
+.cohesion .service-stack img { width: 28px; height: 28px; border-radius: 0; box-shadow: none; flex-shrink: 0; }
+.service-pair { position: relative; padding-bottom: 46px; }
+.service-pair .service-shot { display: block; }
+.usage-chip { position: absolute; right: 26px; bottom: 16px; width: 188px; padding: 12px 16px; border-radius: 22px; background: #20231f; box-shadow: 0 10px 22px -6px #25251f55; transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
+.usage-chip:hover { transform: translateY(-3px) rotate(-1.5deg); }
+.usage-chip > span { display: flex; align-items: center; gap: 8px; font: 11px/1 var(--mono); color: #eeeee6; }
+.usage-chip > span + span { margin-top: 9px; }
+.usage-chip b { width: 40px; font-weight: 400; color: #aab5a4; }
+.usage-chip i { flex: 1; height: 5px; border-radius: 5px; background: #ffffff24; overflow: hidden; }
+.usage-chip u { display: block; height: 100%; border-radius: 5px; background: #d8a88c; }
+.usage-chip > span + span u { background: #c1d8b0; }
+.usage-chip em { font-style: normal; width: 28px; text-align: right; }
+.usage-chip:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .cohesion .service-visual { margin-top: 20px; padding: 14px; }
+  .service-pair { padding-bottom: 44px; }
+  .usage-chip { right: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cohesion a.service-visual, .usage-chip { transition: none; }
+  .cohesion a.service-visual:hover, .usage-chip:hover { transform: none; }
+}
+/* Contact: reply time and engagement shape sit under the email; webmail fallback is readable. */
+.cohesion .contact-bottom .contact-note { max-width: 46ch; margin: 18px 0 0; text-wrap: pretty; }
+.cohesion .contact-bottom .webmail-option { font-size: 14px; margin-top: 8px; }
+/* Services rows: the outcome line leads each row; one paragraph of proof follows. */
+.cohesion .experience-copy > .service-outcome { max-width: 24ch; margin: 0 0 16px; font-size: clamp(22px, 2.2vw, 28px); font-weight: 550; line-height: 1.25; letter-spacing: -.03em; color: var(--ink); text-wrap: balance; }
+.cohesion .experience-copy > .service-outcome + p { margin-top: 0; }
+@media (max-width: 700px) {
+  .cohesion .experience-copy > .service-outcome { font-size: 22px; max-width: none; }
+}
+/* Services type pass: 16-17px body, darker secondary ink, ~65 characters per line (46ch, since the 0-based ch overstates average lowercase width), softer display tracking, no text under 12px. */
+.cohesion.services-page { --muted: #4a4a52; }
+.cohesion.services-page :is(#page-title, #services-title, #faq-title, #contact-title) { letter-spacing: -.035em; }
+.cohesion.services-page .experience-copy > p:not(.service-outcome),
+.cohesion.services-page .faq-row p { max-width: 46ch; font-size: 17px; line-height: 1.7; color: var(--muted); }
+.cohesion.services-page .content-lede { color: var(--muted); }
+.cohesion.services-page .contact-bottom p:not(.webmail-option) { max-width: 52ch; font-size: 16px; line-height: 1.65; color: #4a4559; }
+.cohesion.services-page .experience-meta > p.mono { font-size: 12px; }
+.cohesion.services-page .eyebrow { font-size: 13px; }
+.cohesion.services-page .site-footer > .mono { font-size: 12px; }
+.cohesion.services-page .site-footer > div a { font-size: 13px; }
+.cohesion.services-page .usage-chip { width: 204px; }
+.cohesion.services-page .usage-chip > span { font-size: 12px; }
+.cohesion.services-page .usage-chip b { width: 46px; }
+@media (max-width: 700px) {
+  .cohesion.services-page .experience-copy > p:not(.service-outcome),
+  .cohesion.services-page .faq-row p { font-size: 16px; }
+}
+/* Adapt: 44px hit areas without changing how the text sits. */
+.cohesion.services-page .text-link { padding-block: 11px; }
+.cohesion.services-page .webmail-option a { padding-block: 10px; }
+.cohesion.services-page :is(.faq-row p a, .contact-email, .site-footer > div a) { position: relative; }
+.cohesion.services-page :is(.faq-row p a, .contact-email)::after { content: ""; position: absolute; inset: -12px -6px; }
+.cohesion.services-page .site-footer > div a::after { content: ""; position: absolute; inset: -4px -5px; }
+/* Thumb-zone CTA for phones: appears after the hero CTA scrolls away, hides at the contact block. */
+.sticky-cta { display: none; }
+@media (max-width: 700px) {
+  .sticky-cta {
+    position: fixed; z-index: 20; left: 50%; bottom: max(16px, env(safe-area-inset-bottom));
+    display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px;
+    border-radius: 999px; background: #14181f; color: #f4f7fb; font-size: 16px; font-weight: 600; white-space: nowrap;
+    box-shadow: 0 14px 28px -10px #0b122080, 0 2px 4px #0b122033;
+    transform: translate(-50%, 140%); visibility: hidden;
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1), visibility 0s .4s;
+  }
+  .sticky-cta.is-visible { transform: translate(-50%, 0); visibility: visible; transition-delay: 0s; }
+  .sticky-cta:focus-visible { outline: 2px solid #749ee8; outline-offset: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
+/* Polish: keep "full-stack" whole at every width; the italic accent stays on the h1 and the closing CTA. */
+.nowrap { white-space: nowrap; }
+.cohesion.services-page #page-title { text-wrap: balance; }
+@media (max-width: 480px) {
+  .cohesion.services-page #page-title { font-size: clamp(36px, 10.3vw, 42px); }
+}
